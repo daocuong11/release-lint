@@ -1,6 +1,6 @@
 {
   "tool": "release-lint",
-  "version": "0.3.4",
+  "version": "0.3.5",
   "app": {
     "file": "jellify__Jellify-1.4.1.ipa",
     "platform": "ios",
@@ -16,14 +16,6 @@
   },
   "findings": [
     {
-      "ruleId": "host/localhost",
-      "severity": "warning",
-      "message": "Points at localhost: it only works on the developer machine",
-      "evidence": "http://localhost",
-      "location": "Payload/Jellify.app/main.jsbundle",
-      "fix": "Make sure release builds use production URLs (check env-based config such as EXPO_PUBLIC_* or app.config.ts). If this host is intended, add it to allowHosts in release-lint.config.json."
-    },
-    {
       "ruleId": "debug/arbitrary-loads",
       "severity": "warning",
       "message": "App Transport Security is turned off for every host",
@@ -34,7 +26,7 @@
   ],
   "summary": {
     "errors": 0,
-    "warnings": 2,
+    "warnings": 1,
     "info": 0
   }
 }

@@ -1,6 +1,6 @@
 {
   "tool": "release-lint",
-  "version": "0.3.4",
+  "version": "0.3.5",
   "app": {
     "file": "streamyfin__streamyfin-ios.ipa",
     "platform": "ios",
@@ -27,7 +27,7 @@
       "ruleId": "host/localhost",
       "severity": "warning",
       "message": "Points at localhost: it only works on the developer machine",
-      "evidence": "http://localhost",
+      "evidence": "http://localhost:3000",
       "location": "Payload/Streamyfin.app/main.jsbundle",
       "fix": "Make sure release builds use production URLs (check env-based config such as EXPO_PUBLIC_* or app.config.ts). If this host is intended, add it to allowHosts in release-lint.config.json."
     },

@@ -1,6 +1,6 @@
 {
   "tool": "release-lint",
-  "version": "0.3.4",
+  "version": "0.3.5",
   "app": {
     "file": "alby-go__alby-go-v2.1.0-android.apk",
     "platform": "android",

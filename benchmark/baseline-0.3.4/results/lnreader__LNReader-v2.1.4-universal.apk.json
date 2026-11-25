@@ -1,0 +1,32 @@
+{
+  "tool": "release-lint",
+  "version": "0.3.4",
+  "app": {
+    "file": "lnreader__LNReader-v2.1.4-universal.apk",
+    "platform": "android",
+    "appId": "com.rajarsheechatterjee.LNReader",
+    "version": "2.1.4",
+    "build": "4196356",
+    "bundle": {
+      "file": "assets/index.android.bundle",
+      "kind": "hermes",
+      "hermesVersion": 98,
+      "approximate": false
+    }
+  },
+  "findings": [
+    {
+      "ruleId": "debug/cleartext-traffic",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed to every host",
+      "evidence": "android:usesCleartextTraffic=\"true\"",
+      "location": "AndroidManifest.xml",
+      "fix": "Remove usesCleartextTraffic, or allow HTTP only for specific hosts with a network security config."
+    }
+  ],
+  "summary": {
+    "errors": 0,
+    "warnings": 1,
+    "info": 0
+  }
+}

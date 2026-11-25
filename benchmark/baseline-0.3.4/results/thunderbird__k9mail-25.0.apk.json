@@ -1,0 +1,43 @@
+{
+  "tool": "release-lint",
+  "version": "0.3.4",
+  "app": {
+    "file": "thunderbird__k9mail-25.0.apk",
+    "platform": "android",
+    "appId": "com.fsck.k9",
+    "version": "25.0",
+    "build": "39047",
+    "bundle": null
+  },
+  "findings": [
+    {
+      "ruleId": "debug/cleartext-traffic",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed to every host",
+      "evidence": "<base-config cleartextTrafficPermitted=\"true\">",
+      "location": "res/8G.xml",
+      "fix": "Remove cleartextTrafficPermitted from <base-config>, or allow plain HTTP only for the hosts that need it with a <domain-config>."
+    },
+    {
+      "ruleId": "debug/user-ca-trusted",
+      "severity": "warning",
+      "message": "Trusts user-installed CA certificates: anyone who adds one to their phone can read the app's HTTPS traffic",
+      "evidence": "<base-config> trusts <certificates src=\"user\">",
+      "location": "res/8G.xml",
+      "fix": "Move <certificates src=\"user\"/> into <debug-overrides>, which only applies to debuggable builds."
+    },
+    {
+      "ruleId": "debug/cleartext-traffic",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed to every host on Android 6 and older (Android 7+ follows the network security config instead)",
+      "evidence": "android:usesCleartextTraffic=\"true\"",
+      "location": "AndroidManifest.xml",
+      "fix": "Remove usesCleartextTraffic, or allow HTTP only for specific hosts with a network security config."
+    }
+  ],
+  "summary": {
+    "errors": 0,
+    "warnings": 3,
+    "info": 0
+  }
+}

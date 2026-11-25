@@ -1,6 +1,6 @@
 {
   "tool": "release-lint",
-  "version": "0.3.4",
+  "version": "0.3.5",
   "app": {
     "file": "thunderbird__k9mail-25.0.apk",
     "platform": "android",

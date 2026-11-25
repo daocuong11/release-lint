@@ -1,0 +1,56 @@
+{
+  "tool": "release-lint",
+  "version": "0.3.4",
+  "app": {
+    "file": "streamyfin__streamyfin-android-phone-apk.apk",
+    "platform": "android",
+    "appId": "com.fredrikburmester.streamyfin",
+    "version": "0.55.2",
+    "build": "160",
+    "bundle": {
+      "file": "assets/index.android.bundle",
+      "kind": "hermes",
+      "hermesVersion": 98,
+      "approximate": false
+    }
+  },
+  "findings": [
+    {
+      "ruleId": "host/private-network",
+      "severity": "warning",
+      "message": "Points at a private network address",
+      "evidence": "http://192.168.1.100:8096",
+      "location": "assets/index.android.bundle",
+      "fix": "Make sure release builds use production URLs (check env-based config such as EXPO_PUBLIC_* or app.config.ts). If this host is intended, add it to allowHosts in release-lint.config.json."
+    },
+    {
+      "ruleId": "host/localhost",
+      "severity": "warning",
+      "message": "Points at localhost: it only works on the developer machine",
+      "evidence": "http://localhost",
+      "location": "assets/index.android.bundle",
+      "fix": "Make sure release builds use production URLs (check env-based config such as EXPO_PUBLIC_* or app.config.ts). If this host is intended, add it to allowHosts in release-lint.config.json."
+    },
+    {
+      "ruleId": "debug/cleartext-traffic",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed to every host",
+      "evidence": "<base-config cleartextTrafficPermitted=\"true\">",
+      "location": "res/8G.xml",
+      "fix": "Remove cleartextTrafficPermitted from <base-config>, or allow plain HTTP only for the hosts that need it with a <domain-config>."
+    },
+    {
+      "ruleId": "debug/user-ca-trusted",
+      "severity": "warning",
+      "message": "Trusts user-installed CA certificates: anyone who adds one to their phone can read the app's HTTPS traffic",
+      "evidence": "<base-config> trusts <certificates src=\"user\">",
+      "location": "res/8G.xml",
+      "fix": "Move <certificates src=\"user\"/> into <debug-overrides>, which only applies to debuggable builds."
+    }
+  ],
+  "summary": {
+    "errors": 0,
+    "warnings": 4,
+    "info": 0
+  }
+}

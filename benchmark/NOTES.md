@@ -2,7 +2,7 @@
 
 Bugs, gaps and false-alarm patterns found by running the benchmark on release-lint 0.3.3 (commit 6a1184f). The
 0.3.3 results are kept unchanged in `baseline-0.3.3/`. Fixes went into 0.3.4 on branch `fix/benchmark-findings`,
-and the current `findings.csv` and `RESULTS.md` come from a re-run on 0.3.4.
+and 0.3.5 (axios localhost). The current `findings.csv` and `RESULTS.md` come from a re-run on 0.3.5; `baseline-0.3.4/` keeps the 0.3.4 run.
 
 ## Status in 0.3.4
 
@@ -16,7 +16,7 @@ and the current `findings.csv` and `RESULTS.md` come from a re-run on 0.3.4.
 | 6 | `secret/private-key` on a bare PEM header | **Fixed** (fa757fa). Needs 64+ base64 characters of key body; evidence is the header only. |
 | 7 | Grouping mixes verdicts | Unchanged (benchmark format). |
 | 8 | CRL/OCSP hosts | **Fixed** (c00b0a1). Well-known CA revocation domains are skipped. |
-| 9 | Bare `http://localhost` | **Cause found, fix proposed for 0.3.5.** It is axios: `lib/platform/common/utils.js` has `const origin = (hasBrowserEnv && window.location.href) || 'http://localhost'`, a base for parsing relative URLs outside a browser (checked in axios 1.7.4 and 1.20.0). 8 rows in 6 apps. Pixelfed has no axios, so its copy is still unexplained. In Rocket.Chat it is really `http://localhost:3000`. |
+| 9 | Bare `http://localhost` | **Fixed in 0.3.5** (c9038bf): the exact string is ignored in bundles. It is axios: `lib/platform/common/utils.js` has `const origin = (hasBrowserEnv && window.location.href) || 'http://localhost'`, a base for parsing relative URLs outside a browser (checked in axios 1.7.4 and 1.20.0). 8 rows in 6 apps. Pixelfed has no axios, so its copy is still unexplained. In Rocket.Chat it is really `http://localhost:3000`. |
 | 10 | "dev" subdomain heuristic | Open (documented limit). |
 | – | Flavored APKs not found | **Fixed** (d4a79a3). |
 

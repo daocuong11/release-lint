@@ -1,6 +1,6 @@
 {
   "tool": "release-lint",
-  "version": "0.3.4",
+  "version": "0.3.5",
   "app": {
     "file": "pixelfed__app-release.apk",
     "platform": "android",
@@ -14,19 +14,10 @@
       "approximate": false
     }
   },
-  "findings": [
-    {
-      "ruleId": "host/localhost",
-      "severity": "warning",
-      "message": "Points at localhost: it only works on the developer machine",
-      "evidence": "http://localhost",
-      "location": "assets/index.android.bundle",
-      "fix": "Make sure release builds use production URLs (check env-based config such as EXPO_PUBLIC_* or app.config.ts). If this host is intended, add it to allowHosts in release-lint.config.json."
-    }
-  ],
+  "findings": [],
   "summary": {
     "errors": 0,
-    "warnings": 1,
+    "warnings": 0,
     "info": 0
   }
 }

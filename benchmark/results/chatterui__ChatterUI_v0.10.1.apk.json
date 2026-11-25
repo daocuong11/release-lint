@@ -1,6 +1,6 @@
 {
   "tool": "release-lint",
-  "version": "0.3.4",
+  "version": "0.3.5",
   "app": {
     "file": "chatterui__ChatterUI_v0.10.1.apk",
     "platform": "android",

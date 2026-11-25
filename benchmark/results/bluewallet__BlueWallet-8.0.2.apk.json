@@ -1,6 +1,6 @@
 {
   "tool": "release-lint",
-  "version": "0.3.4",
+  "version": "0.3.5",
   "app": {
     "file": "bluewallet__BlueWallet-8.0.2.apk",
     "platform": "android",
