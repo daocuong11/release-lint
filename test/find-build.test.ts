@@ -50,6 +50,18 @@ describe('findBuilds', () => {
     expect(await findBuilds(root)).toEqual([]);
   });
 
+  it('finds flavored APKs, which Gradle puts one folder deeper (apk/<flavor>/release/), but not their debug builds', async () => {
+    const root = await project({
+      'android/app/build/outputs/apk/production/release/app-production-release.apk': 200,
+      'android/app/build/outputs/apk/production/debug/app-production-debug.apk': 300,
+      'android/app/build/outputs/apk/staging/release/app-staging-release.apk': 100,
+    });
+    expect((await findBuilds(root)).map((b) => b.path)).toEqual([
+      'android/app/build/outputs/apk/production/release/app-production-release.apk',
+      'android/app/build/outputs/apk/staging/release/app-staging-release.apk',
+    ]);
+  });
+
   it('returns nothing for a folder that does not exist', async () => {
     expect(await findBuilds(join(tmpdir(), 'release-lint-missing-folder-xyz'))).toEqual([]);
   });
