@@ -1,0 +1,80 @@
+{
+  "tool": "release-lint",
+  "version": "0.3.3",
+  "app": {
+    "file": "rocketchat__ios-release.ipa",
+    "platform": "ios",
+    "appId": "chat.rocket.ios",
+    "version": "4.78.1",
+    "build": "110169",
+    "bundle": {
+      "file": "Payload/Rocket.Chat.app/main.jsbundle",
+      "kind": "hermes",
+      "hermesVersion": 98,
+      "approximate": true
+    }
+  },
+  "findings": [
+    {
+      "ruleId": "secret/private-key",
+      "severity": "error",
+      "message": "Private key",
+      "evidence": "-----BEGIN ENCRYPTED PRIVATE KEY-----",
+      "location": "Payload/Rocket.Chat.app/main.jsbundle",
+      "fix": "Remove the key from the app and replace it: anyone with the app file has a copy."
+    },
+    {
+      "ruleId": "secret/private-key",
+      "severity": "error",
+      "message": "Private key",
+      "evidence": "-----BEGIN DSA PRIVATE KEY-----",
+      "location": "Payload/Rocket.Chat.app/main.jsbundle",
+      "fix": "Remove the key from the app and replace it: anyone with the app file has a copy."
+    },
+    {
+      "ruleId": "secret/private-key",
+      "severity": "error",
+      "message": "Private key",
+      "evidence": "-----BEGIN EC PRIVATE KEY-----",
+      "location": "Payload/Rocket.Chat.app/main.jsbundle",
+      "fix": "Remove the key from the app and replace it: anyone with the app file has a copy."
+    },
+    {
+      "ruleId": "secret/private-key",
+      "severity": "error",
+      "message": "Private key",
+      "evidence": "-----BEGIN PRIVATE KEY-----",
+      "location": "Payload/Rocket.Chat.app/main.jsbundle",
+      "fix": "Remove the key from the app and replace it: anyone with the app file has a copy."
+    },
+    {
+      "ruleId": "secret/private-key",
+      "severity": "error",
+      "message": "Private key",
+      "evidence": "-----BEGIN RSA PRIVATE KEY-----",
+      "location": "Payload/Rocket.Chat.app/main.jsbundle",
+      "fix": "Remove the key from the app and replace it: anyone with the app file has a copy."
+    },
+    {
+      "ruleId": "host/localhost",
+      "severity": "warning",
+      "message": "Points at localhost: it only works on the developer machine",
+      "evidence": "http://localhost",
+      "location": "Payload/Rocket.Chat.app/main.jsbundle",
+      "fix": "Make sure release builds use production URLs (check env-based config such as EXPO_PUBLIC_* or app.config.ts). If this host is intended, add it to allowHosts in release-lint.config.json."
+    },
+    {
+      "ruleId": "scan/hermes-approximate",
+      "severity": "info",
+      "message": "Unknown Hermes bytecode version 98: strings were extracted approximately",
+      "evidence": "Hermes bytecode v98",
+      "location": "Payload/Rocket.Chat.app/main.jsbundle",
+      "fix": "Please open an issue with your React Native version so this version gets exact support."
+    }
+  ],
+  "summary": {
+    "errors": 5,
+    "warnings": 1,
+    "info": 1
+  }
+}

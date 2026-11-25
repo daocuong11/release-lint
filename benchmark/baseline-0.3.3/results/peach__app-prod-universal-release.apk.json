@@ -1,0 +1,56 @@
+{
+  "tool": "release-lint",
+  "version": "0.3.3",
+  "app": {
+    "file": "peach__app-prod-universal-release.apk",
+    "platform": "android",
+    "appId": "com.peachbitcoin.peach.mainnet",
+    "version": "0.69.0",
+    "build": "403",
+    "bundle": {
+      "file": "assets/index.android.bundle",
+      "kind": "hermes",
+      "hermesVersion": 96,
+      "approximate": false
+    }
+  },
+  "findings": [
+    {
+      "ruleId": "secret/private-key",
+      "severity": "error",
+      "message": "Private key",
+      "evidence": "-----BEGIN PRIVATE KEY-----",
+      "location": "assets/index.android.bundle",
+      "fix": "Remove the key from the app and replace it: anyone with the app file has a copy."
+    },
+    {
+      "ruleId": "host/private-network",
+      "severity": "warning",
+      "message": "Points at a private network address",
+      "evidence": "192.168.0.1:50001",
+      "location": "assets/index.android.bundle",
+      "fix": "Make sure release builds use production URLs (check env-based config such as EXPO_PUBLIC_* or app.config.ts). If this host is intended, add it to allowHosts in release-lint.config.json."
+    },
+    {
+      "ruleId": "host/localhost",
+      "severity": "warning",
+      "message": "Points at localhost: it only works on the developer machine",
+      "evidence": "http://localhost:8545",
+      "location": "assets/index.android.bundle",
+      "fix": "Make sure release builds use production URLs (check env-based config such as EXPO_PUBLIC_* or app.config.ts). If this host is intended, add it to allowHosts in release-lint.config.json."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> lencr.org",
+      "location": "res/8G.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    }
+  ],
+  "summary": {
+    "errors": 1,
+    "warnings": 3,
+    "info": 0
+  }
+}

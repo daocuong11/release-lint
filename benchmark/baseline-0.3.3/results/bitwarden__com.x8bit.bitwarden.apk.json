@@ -1,0 +1,67 @@
+{
+  "tool": "release-lint",
+  "version": "0.3.3",
+  "app": {
+    "file": "bitwarden__com.x8bit.bitwarden.apk",
+    "platform": "android",
+    "appId": "com.x8bit.bitwarden",
+    "version": "2026.11.1",
+    "build": "22056",
+    "bundle": null
+  },
+  "findings": [
+    {
+      "ruleId": "debug/user-ca-trusted",
+      "severity": "warning",
+      "message": "Trusts user-installed CA certificates: anyone who adds one to their phone can read the app's HTTPS traffic",
+      "evidence": "<base-config> trusts <certificates src=\"user\">",
+      "location": "res/8G.xml",
+      "fix": "Move <certificates src=\"user\"/> into <debug-overrides>, which only applies to debuggable builds."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> c.lencr.org",
+      "location": "res/8G.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> c.pki.goog",
+      "location": "res/8G.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crls.certainly.com",
+      "location": "res/8G.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> o.pki.goog",
+      "location": "res/8G.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> ocsp.sectigo.com",
+      "location": "res/8G.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    }
+  ],
+  "summary": {
+    "errors": 0,
+    "warnings": 6,
+    "info": 0
+  }
+}

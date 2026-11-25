@@ -1,0 +1,35 @@
+{
+  "tool": "release-lint",
+  "version": "0.3.3",
+  "app": {
+    "file": "home-assistant__app-full-release.apk",
+    "platform": "android",
+    "appId": "io.homeassistant.companion.android",
+    "version": "2026.11.1-full",
+    "build": "25506",
+    "bundle": null
+  },
+  "findings": [
+    {
+      "ruleId": "debug/cleartext-traffic",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed to every host",
+      "evidence": "<base-config cleartextTrafficPermitted=\"true\">",
+      "location": "res/8G.xml",
+      "fix": "Remove cleartextTrafficPermitted from <base-config>, or allow plain HTTP only for the hosts that need it with a <domain-config>."
+    },
+    {
+      "ruleId": "debug/user-ca-trusted",
+      "severity": "warning",
+      "message": "Trusts user-installed CA certificates: anyone who adds one to their phone can read the app's HTTPS traffic",
+      "evidence": "<base-config> trusts <certificates src=\"user\">",
+      "location": "res/8G.xml",
+      "fix": "Move <certificates src=\"user\"/> into <debug-overrides>, which only applies to debuggable builds."
+    }
+  ],
+  "summary": {
+    "errors": 0,
+    "warnings": 2,
+    "info": 0
+  }
+}

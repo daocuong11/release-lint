@@ -1,0 +1,1 @@
+release-lint: Not an .ipa, .aab or .apk file

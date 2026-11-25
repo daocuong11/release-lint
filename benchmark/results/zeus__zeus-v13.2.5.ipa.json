@@ -1,0 +1,56 @@
+{
+  "tool": "release-lint",
+  "version": "0.3.4",
+  "app": {
+    "file": "zeus__zeus-v13.2.5.ipa",
+    "platform": "ios",
+    "appId": "com.zeusln.zeus",
+    "version": "13.2.5",
+    "build": "1201",
+    "bundle": {
+      "file": "Payload/zeus.app/main.jsbundle",
+      "kind": "hermes",
+      "hermesVersion": 99,
+      "approximate": false
+    }
+  },
+  "findings": [
+    {
+      "ruleId": "host/localhost",
+      "severity": "warning",
+      "message": "Points at localhost: it only works on the developer machine",
+      "evidence": "http://localhost:3000",
+      "location": "Payload/zeus.app/main.jsbundle",
+      "fix": "Make sure release builds use production URLs (check env-based config such as EXPO_PUBLIC_* or app.config.ts). If this host is intended, add it to allowHosts in release-lint.config.json."
+    },
+    {
+      "ruleId": "host/local-only-domain",
+      "severity": "warning",
+      "message": "Points at a local-only domain (.local, .test, .internal, .lan)",
+      "evidence": "https://mempool.mynode.local",
+      "location": "Payload/zeus.app/main.jsbundle",
+      "fix": "Make sure release builds use production URLs (check env-based config such as EXPO_PUBLIC_* or app.config.ts). If this host is intended, add it to allowHosts in release-lint.config.json."
+    },
+    {
+      "ruleId": "host/local-only-domain",
+      "severity": "warning",
+      "message": "Points at a local-only domain (.local, .test, .internal, .lan)",
+      "evidence": "https://explorer.mynode.local",
+      "location": "Payload/zeus.app/main.jsbundle",
+      "fix": "Make sure release builds use production URLs (check env-based config such as EXPO_PUBLIC_* or app.config.ts). If this host is intended, add it to allowHosts in release-lint.config.json."
+    },
+    {
+      "ruleId": "debug/arbitrary-loads",
+      "severity": "warning",
+      "message": "App Transport Security is turned off for every host",
+      "evidence": "NSAllowsArbitraryLoads = true",
+      "location": "Info.plist",
+      "fix": "Remove NSAllowsArbitraryLoads, or use NSExceptionDomains for the few hosts that need it. App Review asks for a reason."
+    }
+  ],
+  "summary": {
+    "errors": 0,
+    "warnings": 4,
+    "info": 0
+  }
+}

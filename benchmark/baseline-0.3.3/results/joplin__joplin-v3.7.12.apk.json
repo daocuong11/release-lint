@@ -1,0 +1,72 @@
+{
+  "tool": "release-lint",
+  "version": "0.3.3",
+  "app": {
+    "file": "joplin__joplin-v3.7.12.apk",
+    "platform": "android",
+    "appId": "net.cozic.joplin",
+    "version": "3.7.12",
+    "build": "2097821",
+    "bundle": {
+      "file": "assets/index.android.bundle",
+      "kind": "hermes",
+      "hermesVersion": 96,
+      "approximate": true
+    }
+  },
+  "findings": [
+    {
+      "ruleId": "secret/private-key",
+      "severity": "error",
+      "message": "Private key",
+      "evidence": "-----BEGIN RSA PRIVATE KEY-----",
+      "location": "assets/index.android.bundle",
+      "fix": "Remove the key from the app and replace it: anyone with the app file has a copy."
+    },
+    {
+      "ruleId": "host/private-network",
+      "severity": "warning",
+      "message": "Points at a private network address",
+      "evidence": "10.0.1.1:8081",
+      "location": "assets/index.android.bundle",
+      "fix": "Make sure release builds use production URLs (check env-based config such as EXPO_PUBLIC_* or app.config.ts). If this host is intended, add it to allowHosts in release-lint.config.json."
+    },
+    {
+      "ruleId": "host/localhost",
+      "severity": "warning",
+      "message": "Points at localhost: it only works on the developer machine",
+      "evidence": "http://localhost:11434/v1",
+      "location": "assets/index.android.bundle",
+      "fix": "Make sure release builds use production URLs (check env-based config such as EXPO_PUBLIC_* or app.config.ts). If this host is intended, add it to allowHosts in release-lint.config.json."
+    },
+    {
+      "ruleId": "debug/cleartext-traffic",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed to every host",
+      "evidence": "<base-config cleartextTrafficPermitted=\"true\">",
+      "location": "res/8G.xml",
+      "fix": "Remove cleartextTrafficPermitted from <base-config>, or allow plain HTTP only for the hosts that need it with a <domain-config>."
+    },
+    {
+      "ruleId": "debug/user-ca-trusted",
+      "severity": "warning",
+      "message": "Trusts user-installed CA certificates: anyone who adds one to their phone can read the app's HTTPS traffic",
+      "evidence": "<base-config> trusts <certificates src=\"user\">",
+      "location": "res/8G.xml",
+      "fix": "Move <certificates src=\"user\"/> into <debug-overrides>, which only applies to debuggable builds."
+    },
+    {
+      "ruleId": "scan/hermes-approximate",
+      "severity": "info",
+      "message": "Unknown Hermes bytecode version 96: strings were extracted approximately",
+      "evidence": "Hermes bytecode v96",
+      "location": "assets/index.android.bundle",
+      "fix": "Please open an issue with your React Native version so this version gets exact support."
+    }
+  ],
+  "summary": {
+    "errors": 1,
+    "warnings": 4,
+    "info": 1
+  }
+}

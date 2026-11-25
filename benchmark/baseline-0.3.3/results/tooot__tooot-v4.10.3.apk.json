@@ -1,0 +1,23 @@
+{
+  "tool": "release-lint",
+  "version": "0.3.3",
+  "app": {
+    "file": "tooot__tooot-v4.10.3.apk",
+    "platform": "android",
+    "appId": "com.xmflsct.app.tooot",
+    "version": "4.10.3",
+    "build": "230827433",
+    "bundle": {
+      "file": "assets/index.android.bundle",
+      "kind": "hermes",
+      "hermesVersion": 94,
+      "approximate": false
+    }
+  },
+  "findings": [],
+  "summary": {
+    "errors": 0,
+    "warnings": 0,
+    "info": 0
+  }
+}

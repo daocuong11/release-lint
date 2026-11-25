@@ -1,0 +1,48 @@
+{
+  "tool": "release-lint",
+  "version": "0.3.3",
+  "app": {
+    "file": "pocketpal__app-prod-release.apk",
+    "platform": "android",
+    "appId": "com.pocketpalai",
+    "version": "1.24.0",
+    "build": "161",
+    "bundle": {
+      "file": "assets/index.android.bundle",
+      "kind": "hermes",
+      "hermesVersion": 98,
+      "approximate": true
+    }
+  },
+  "findings": [
+    {
+      "ruleId": "host/private-network",
+      "severity": "warning",
+      "message": "Points at a private network address",
+      "evidence": "http://192.168.1.100:1234",
+      "location": "assets/index.android.bundle",
+      "fix": "Make sure release builds use production URLs (check env-based config such as EXPO_PUBLIC_* or app.config.ts). If this host is intended, add it to allowHosts in release-lint.config.json."
+    },
+    {
+      "ruleId": "debug/cleartext-traffic",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed to every host",
+      "evidence": "<base-config cleartextTrafficPermitted=\"true\">",
+      "location": "res/8G.xml",
+      "fix": "Remove cleartextTrafficPermitted from <base-config>, or allow plain HTTP only for the hosts that need it with a <domain-config>."
+    },
+    {
+      "ruleId": "scan/hermes-approximate",
+      "severity": "info",
+      "message": "Unknown Hermes bytecode version 98: strings were extracted approximately",
+      "evidence": "Hermes bytecode v98",
+      "location": "assets/index.android.bundle",
+      "fix": "Please open an issue with your React Native version so this version gets exact support."
+    }
+  ],
+  "summary": {
+    "errors": 0,
+    "warnings": 2,
+    "info": 1
+  }
+}

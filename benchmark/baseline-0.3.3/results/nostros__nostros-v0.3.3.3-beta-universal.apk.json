@@ -1,0 +1,32 @@
+{
+  "tool": "release-lint",
+  "version": "0.3.3",
+  "app": {
+    "file": "nostros__nostros-v0.3.3.3-beta-universal.apk",
+    "platform": "android",
+    "appId": "com.nostros",
+    "version": "v0.3.3.3-beta",
+    "build": "79",
+    "bundle": {
+      "file": "assets/index.android.bundle",
+      "kind": "hermes",
+      "hermesVersion": 90,
+      "approximate": false
+    }
+  },
+  "findings": [
+    {
+      "ruleId": "host/non-production",
+      "severity": "warning",
+      "message": "Points at what looks like a staging or development host",
+      "evidence": "wss://relay-dev.cowdle.gg",
+      "location": "assets/index.android.bundle",
+      "fix": "Make sure release builds use production URLs (check env-based config such as EXPO_PUBLIC_* or app.config.ts). If this host is intended, add it to allowHosts in release-lint.config.json."
+    }
+  ],
+  "summary": {
+    "errors": 0,
+    "warnings": 1,
+    "info": 0
+  }
+}

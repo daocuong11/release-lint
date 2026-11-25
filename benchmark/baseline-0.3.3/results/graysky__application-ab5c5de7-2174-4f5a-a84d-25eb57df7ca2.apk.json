@@ -1,0 +1,23 @@
+{
+  "tool": "release-lint",
+  "version": "0.3.3",
+  "app": {
+    "file": "graysky__application-ab5c5de7-2174-4f5a-a84d-25eb57df7ca2.apk",
+    "platform": "android",
+    "appId": "dev.mozzius.graysky",
+    "version": "1.7.0",
+    "build": "223",
+    "bundle": {
+      "file": "assets/index.android.bundle",
+      "kind": "hermes",
+      "hermesVersion": 96,
+      "approximate": false
+    }
+  },
+  "findings": [],
+  "summary": {
+    "errors": 0,
+    "warnings": 0,
+    "info": 0
+  }
+}

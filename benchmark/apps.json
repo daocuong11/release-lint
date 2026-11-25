@@ -1,0 +1,39 @@
+{
+  "checked": "2026-11-25",
+  "apps": [
+    { "id": "mattermost", "repo": "mattermost/mattermost-mobile", "tag": "v2.46.1", "group": "A", "type": "react-native", "assets": ["Mattermost-unsigned.apk", "Mattermost-unsigned.ipa"], "variant": "Unsigned builds published for sideloading; not the store builds." },
+    { "id": "rocketchat", "repo": "RocketChat/Rocket.Chat.ReactNative", "tag": "4.78.1", "group": "A", "type": "react-native", "assets": ["android-release.apk", "ios-release.ipa"] },
+    { "id": "zeus", "repo": "ZeusLN/zeus", "tag": "v13.2.5", "group": "A", "type": "react-native", "assets": ["zeus-v13.2.5-universal.apk", "zeus-v13.2.5.ipa"], "variant": "Lightning wallet: testnet/regtest hosts may be intended." },
+    { "id": "streamyfin", "repo": "streamyfin/streamyfin", "tag": "v0.55.2", "group": "A", "type": "react-native", "assets": ["streamyfin-android-phone-apk.apk", "streamyfin-android.aab", "streamyfin-ios.ipa"], "variant": "Jellyfin client: users point it at their own (often LAN or plain-HTTP) server." },
+    { "id": "jellify", "repo": "Jellify-Music/App", "tag": "1.4.1", "group": "A", "type": "react-native", "assets": ["Jellify-1.4.1-app-universal-release.apk", "Jellify-1.4.1.ipa"], "variant": "Jellyfin client: users point it at their own (often LAN or plain-HTTP) server." },
+    { "id": "joplin", "repo": "laurent22/joplin-android", "tag": "android-v3.7.12", "group": "A", "type": "react-native", "assets": ["joplin-v3.7.12.apk"], "variant": "Syncs to user-chosen servers, including local ones." },
+    { "id": "bluewallet", "repo": "BlueWallet/BlueWallet", "tag": "v8.0.2", "group": "A", "type": "react-native", "assets": ["BlueWallet-8.0.2.apk"], "variant": "Bitcoin wallet: testnet hosts may be intended." },
+    { "id": "edge", "repo": "EdgeApp/edge-react-gui", "tag": "v4.53.0", "group": "A", "type": "react-native", "assets": ["Edge.4.53.0.apk"], "variant": "Multi-coin wallet: testnet hosts may be intended." },
+    { "id": "peach", "repo": "Peach2Peach/peach-app", "tag": "v0.69.0(403)", "group": "A", "type": "react-native", "assets": ["app-prod-universal-release.apk"] },
+    { "id": "blixt-mainnet", "repo": "smolcars/blixt-wallet", "tag": "v0.9.0", "group": "A", "type": "react-native", "assets": ["blixt-wallet-mainnet-0.9.0.apk"] },
+    { "id": "blixt-testnet", "repo": "smolcars/blixt-wallet", "tag": "v0.9.0", "group": "A", "type": "react-native", "assets": ["blixt-wallet-testnet-0.9.0.apk"], "variant": "Testnet build on purpose: testnet hosts and channels are intended." },
+    { "id": "minibits", "repo": "minibits-cash/minibits_wallet", "tag": "v0.4.5-beta.1", "group": "A", "type": "react-native", "assets": ["app-universal-release.apk"], "variant": "Beta release." },
+    { "id": "alby-go", "repo": "getAlby/go", "tag": "v2.1.0", "group": "A", "type": "react-native", "assets": ["alby-go-v2.1.0-android.apk"] },
+    { "id": "pocketpal", "repo": "a-ghorbani/pocketpal-ai", "tag": "v1.24.0", "group": "A", "type": "react-native", "assets": ["app-prod-release.apk"] },
+    { "id": "chatterui", "repo": "Vali-98/ChatterUI", "tag": "v0.10.0", "group": "A", "type": "react-native", "assets": ["ChatterUI_v0.10.1.apk"], "variant": "Tag v0.10.0 ships an asset named v0.10.1 (as published). Connects to user-run local LLM servers." },
+    { "id": "cherry-studio", "repo": "CherryHQ/cherry-studio-app", "tag": "v0.6.2", "group": "A", "type": "react-native", "assets": ["cherry-studio-0.6.2-android.apk"], "variant": "Connects to user-run local LLM servers." },
+    { "id": "lnreader", "repo": "LNReader/lnreader", "tag": "v2.1.4", "group": "A", "type": "react-native", "assets": ["LNReader-v2.1.4-universal.apk"] },
+    { "id": "pixelfed", "repo": "pixelfed/pixelfed-rn", "tag": "v2.0.1", "group": "A", "type": "react-native", "assets": ["app-release.apk"] },
+
+    { "id": "fintunes", "repo": "leinelissen/fintunes", "tag": "v2.4.6", "group": "B", "type": "react-native", "assets": ["fintunes-v2.4.6.apk", "fintunes-v2.4.6.aab"], "variant": "Jellyfin client: users point it at their own (often LAN or plain-HTTP) server." },
+    { "id": "musicfree", "repo": "maotoumao/MusicFree", "tag": "v0.6.2", "group": "B", "type": "react-native", "assets": ["app-universal-release.apk"] },
+    { "id": "zulip", "repo": "zulip/zulip-mobile", "tag": "v27.235", "group": "B", "type": "react-native", "assets": ["app-release.aab"] },
+    { "id": "graysky", "repo": "mozzius/graysky", "tag": "v1.7.0", "group": "B", "type": "react-native", "assets": ["application-ab5c5de7-2174-4f5a-a84d-25eb57df7ca2.apk"] },
+    { "id": "nostros", "repo": "KoalaSat/nostros", "tag": "v0.3.3.3-beta", "group": "B", "type": "react-native", "assets": ["nostros-v0.3.3.3-beta-universal.apk"], "variant": "Beta release." },
+    { "id": "tooot", "repo": "tooot-app/app", "tag": "v4.10.3", "group": "B", "type": "react-native", "assets": ["tooot-v4.10.3.apk"] },
+
+    { "id": "immich", "repo": "immich-app/immich", "tag": "v3.4.2", "group": "C", "type": "flutter", "assets": ["app-release.apk"], "variant": "Self-hosted server: users point it at their own (often LAN or plain-HTTP) server." },
+    { "id": "localsend", "repo": "localsend/localsend", "tag": "v1.19.0", "group": "C", "type": "flutter", "assets": ["LocalSend-1.19.0-android-arm64v8.apk"], "variant": "Local-network file sharing: LAN and plain HTTP are the point of the app." },
+    { "id": "lichess", "repo": "lichess-org/mobile", "tag": "v0.31.8", "group": "C", "type": "flutter", "assets": ["3108.apk"] },
+    { "id": "home-assistant", "repo": "home-assistant/android", "tag": "2026.11.1", "group": "C", "type": "native-android", "assets": ["app-full-release.apk"], "variant": "Self-hosted server: users point it at their own (often LAN or plain-HTTP) server." },
+    { "id": "bitwarden", "repo": "bitwarden/android", "tag": "v2026.11.1-bwpm", "group": "C", "type": "native-android", "assets": ["com.x8bit.bitwarden.apk"] },
+    { "id": "mastodon", "repo": "mastodon/mastodon-android", "tag": "v2.13.7", "group": "C", "type": "native-android", "assets": ["mastodon-githubRelease.apk"] },
+    { "id": "thunderbird", "repo": "thunderbird/thunderbird-android", "tag": "K9MAIL_25_0", "group": "C", "type": "native-android", "assets": ["k9mail-25.0.apk"] },
+    { "id": "element-x", "repo": "element-hq/element-x-android", "tag": "v26.11.1", "group": "C", "type": "native-android", "assets": ["app-gplay-release-signed.aab"] }
+  ]
+}

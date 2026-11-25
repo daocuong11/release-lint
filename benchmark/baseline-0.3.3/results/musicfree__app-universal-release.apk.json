@@ -1,0 +1,40 @@
+{
+  "tool": "release-lint",
+  "version": "0.3.3",
+  "app": {
+    "file": "musicfree__app-universal-release.apk",
+    "platform": "android",
+    "appId": "fun.upup.musicfree",
+    "version": "0.6.2",
+    "build": "400011",
+    "bundle": {
+      "file": "assets/index.android.bundle",
+      "kind": "hermes",
+      "hermesVersion": 96,
+      "approximate": false
+    }
+  },
+  "findings": [
+    {
+      "ruleId": "host/localhost",
+      "severity": "warning",
+      "message": "Points at localhost: it only works on the developer machine",
+      "evidence": "http://localhost",
+      "location": "assets/index.android.bundle",
+      "fix": "Make sure release builds use production URLs (check env-based config such as EXPO_PUBLIC_* or app.config.ts). If this host is intended, add it to allowHosts in release-lint.config.json."
+    },
+    {
+      "ruleId": "debug/cleartext-traffic",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed to every host",
+      "evidence": "android:usesCleartextTraffic=\"true\"",
+      "location": "AndroidManifest.xml",
+      "fix": "Remove usesCleartextTraffic, or allow HTTP only for specific hosts with a network security config."
+    }
+  ],
+  "summary": {
+    "errors": 0,
+    "warnings": 2,
+    "info": 0
+  }
+}

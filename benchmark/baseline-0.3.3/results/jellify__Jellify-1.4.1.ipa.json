@@ -1,0 +1,40 @@
+{
+  "tool": "release-lint",
+  "version": "0.3.3",
+  "app": {
+    "file": "jellify__Jellify-1.4.1.ipa",
+    "platform": "ios",
+    "appId": "com.cosmonautical.jellify",
+    "version": "1.4.1",
+    "build": "317",
+    "bundle": {
+      "file": "Payload/Jellify.app/main.jsbundle",
+      "kind": "hermes",
+      "hermesVersion": 99,
+      "approximate": false
+    }
+  },
+  "findings": [
+    {
+      "ruleId": "host/localhost",
+      "severity": "warning",
+      "message": "Points at localhost: it only works on the developer machine",
+      "evidence": "http://localhost",
+      "location": "Payload/Jellify.app/main.jsbundle",
+      "fix": "Make sure release builds use production URLs (check env-based config such as EXPO_PUBLIC_* or app.config.ts). If this host is intended, add it to allowHosts in release-lint.config.json."
+    },
+    {
+      "ruleId": "debug/arbitrary-loads",
+      "severity": "warning",
+      "message": "App Transport Security is turned off for every host",
+      "evidence": "NSAllowsArbitraryLoads = true",
+      "location": "Info.plist",
+      "fix": "Remove NSAllowsArbitraryLoads, or use NSExceptionDomains for the few hosts that need it. App Review asks for a reason."
+    }
+  ],
+  "summary": {
+    "errors": 0,
+    "warnings": 2,
+    "info": 0
+  }
+}

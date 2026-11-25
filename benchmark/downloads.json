@@ -1,0 +1,392 @@
+{
+  "alby-go__alby-go-v2.1.0-android.apk": {
+    "app": "alby-go",
+    "repo": "getAlby/go",
+    "tag": "v2.1.0",
+    "asset": "alby-go-v2.1.0-android.apk",
+    "url": "https://github.com/getAlby/go/releases/download/v2.1.0/alby-go-v2.1.0-android.apk",
+    "sha256": "77415e910af621414a5a9c8329010b5231d22a381bab288f2e1466f71155dd16",
+    "size": 144752289,
+    "downloaded": "2026-11-25T18:39:16.629Z"
+  },
+  "bitwarden__com.x8bit.bitwarden.apk": {
+    "app": "bitwarden",
+    "repo": "bitwarden/android",
+    "tag": "v2026.11.1-bwpm",
+    "asset": "com.x8bit.bitwarden.apk",
+    "url": "https://github.com/bitwarden/android/releases/download/v2026.11.1-bwpm/com.x8bit.bitwarden.apk",
+    "sha256": "ef7ecda031fbaf8a066ad61b5f33ad346bf9a22d18b51b4b09cb54e5cac28715",
+    "size": 144824032,
+    "downloaded": "2026-11-25T18:45:57.828Z"
+  },
+  "blixt-mainnet__blixt-wallet-mainnet-0.9.0.apk": {
+    "app": "blixt-mainnet",
+    "repo": "smolcars/blixt-wallet",
+    "tag": "v0.9.0",
+    "asset": "blixt-wallet-mainnet-0.9.0.apk",
+    "url": "https://github.com/smolcars/blixt-wallet/releases/download/v0.9.0/blixt-wallet-mainnet-0.9.0.apk",
+    "sha256": "2d2a5098f821acd1b7402aaf0aef661fd9d7287c251053d2ac193dcb4fb4ca52",
+    "size": 119674837,
+    "downloaded": "2026-11-25T18:37:47.194Z"
+  },
+  "blixt-testnet__blixt-wallet-testnet-0.9.0.apk": {
+    "app": "blixt-testnet",
+    "repo": "smolcars/blixt-wallet",
+    "tag": "v0.9.0",
+    "asset": "blixt-wallet-testnet-0.9.0.apk",
+    "url": "https://github.com/smolcars/blixt-wallet/releases/download/v0.9.0/blixt-wallet-testnet-0.9.0.apk",
+    "sha256": "d634b8d5b9f2d976cd925aa3b38f888a06c3941c74ebf3575430396739621a80",
+    "size": 119669745,
+    "downloaded": "2026-11-25T18:38:17.899Z"
+  },
+  "bluewallet__BlueWallet-8.0.2.apk": {
+    "app": "bluewallet",
+    "repo": "BlueWallet/BlueWallet",
+    "tag": "v8.0.2",
+    "asset": "BlueWallet-8.0.2.apk",
+    "url": "https://github.com/BlueWallet/BlueWallet/releases/download/v8.0.2/BlueWallet-8.0.2.apk",
+    "sha256": "d411e0c58e325d2bc057506007ebe7052743bfc7dcdaa94af4ace0bb18434454",
+    "size": 77484863,
+    "downloaded": "2026-11-25T18:22:18.906Z"
+  },
+  "chatterui__ChatterUI_v0.10.1.apk": {
+    "app": "chatterui",
+    "repo": "Vali-98/ChatterUI",
+    "tag": "v0.10.0",
+    "asset": "ChatterUI_v0.10.1.apk",
+    "url": "https://github.com/Vali-98/ChatterUI/releases/download/v0.10.0/ChatterUI_v0.10.1.apk",
+    "sha256": "ec051d90bc9f82587a726b525976494bacef50bc8a7dd0e3789b859373121753",
+    "size": 66035707,
+    "downloaded": "2026-11-25T18:40:23.660Z"
+  },
+  "cherry-studio__cherry-studio-0.6.2-android.apk": {
+    "app": "cherry-studio",
+    "repo": "CherryHQ/cherry-studio-app",
+    "tag": "v0.6.2",
+    "asset": "cherry-studio-0.6.2-android.apk",
+    "url": "https://github.com/CherryHQ/cherry-studio-app/releases/download/v0.6.2/cherry-studio-0.6.2-android.apk",
+    "sha256": "22d63880e4963ce33c2df8973b0d6f1eb55435e585d228a4fb0a7f0f4da10287",
+    "size": 111906787,
+    "downloaded": "2026-11-25T18:40:46.157Z"
+  },
+  "edge__Edge.4.53.0.apk": {
+    "app": "edge",
+    "repo": "EdgeApp/edge-react-gui",
+    "tag": "v4.53.0",
+    "asset": "Edge.4.53.0.apk",
+    "url": "https://github.com/EdgeApp/edge-react-gui/releases/download/v4.53.0/Edge.4.53.0.apk",
+    "sha256": "b30b21ac4c01db26f2639c26beb5f97ba947d35034c00502772d8b0b3c5519aa",
+    "size": 116695498,
+    "downloaded": "2026-11-25T18:36:42.306Z"
+  },
+  "element-x__app-gplay-release-signed.aab": {
+    "app": "element-x",
+    "repo": "element-hq/element-x-android",
+    "tag": "v26.11.1",
+    "asset": "app-gplay-release-signed.aab",
+    "url": "https://github.com/element-hq/element-x-android/releases/download/v26.11.1/app-gplay-release-signed.aab",
+    "sha256": "578ad59c4dd8f1d9e9606ead115a343d5e951ba3337f28cb8a42d36fb93b147b",
+    "size": 192565378,
+    "downloaded": "2026-11-25T18:49:59.580Z"
+  },
+  "fintunes__fintunes-v2.4.6.aab": {
+    "app": "fintunes",
+    "repo": "leinelissen/fintunes",
+    "tag": "v2.4.6",
+    "asset": "fintunes-v2.4.6.aab",
+    "url": "https://github.com/leinelissen/fintunes/releases/download/v2.4.6/fintunes-v2.4.6.aab",
+    "sha256": "32e8f75f28c34e889b32ce5d49cd626adce793602cec5909df70567c2fd8a8a8",
+    "size": 90296097,
+    "downloaded": "2026-11-25T18:42:39.869Z"
+  },
+  "fintunes__fintunes-v2.4.6.apk": {
+    "app": "fintunes",
+    "repo": "leinelissen/fintunes",
+    "tag": "v2.4.6",
+    "asset": "fintunes-v2.4.6.apk",
+    "url": "https://github.com/leinelissen/fintunes/releases/download/v2.4.6/fintunes-v2.4.6.apk",
+    "sha256": "60f878f4d705dd97f26950b82069e6ccc54794cfe4ef28b26eb6eedf8864426f",
+    "size": 126534242,
+    "downloaded": "2026-11-25T18:42:18.382Z"
+  },
+  "graysky__application-ab5c5de7-2174-4f5a-a84d-25eb57df7ca2.apk": {
+    "app": "graysky",
+    "repo": "mozzius/graysky",
+    "tag": "v1.7.0",
+    "asset": "application-ab5c5de7-2174-4f5a-a84d-25eb57df7ca2.apk",
+    "url": "https://github.com/mozzius/graysky/releases/download/v1.7.0/application-ab5c5de7-2174-4f5a-a84d-25eb57df7ca2.apk",
+    "sha256": "fe8f60d4bc5ff2fdf982ffc0dad2cabe93d4d9ff89f1401ca2b2526e652eedd8",
+    "size": 110375917,
+    "downloaded": "2026-11-25T18:43:28.441Z"
+  },
+  "home-assistant__app-full-release.apk": {
+    "app": "home-assistant",
+    "repo": "home-assistant/android",
+    "tag": "2026.11.1",
+    "asset": "app-full-release.apk",
+    "url": "https://github.com/home-assistant/android/releases/download/2026.11.1/app-full-release.apk",
+    "sha256": "9c11abaf9e1b832894c49d806f66769ed76f99bac26cd1da029e2a9df227e41f",
+    "size": 43986826,
+    "downloaded": "2026-11-25T18:45:27.061Z"
+  },
+  "immich__app-release.apk": {
+    "app": "immich",
+    "repo": "immich-app/immich",
+    "tag": "v3.4.2",
+    "asset": "app-release.apk",
+    "url": "https://github.com/immich-app/immich/releases/download/v3.4.2/app-release.apk",
+    "sha256": "bd1078a1c92339f693bf0afc19669bc572bb96f646d9107e806c9d34f2df7017",
+    "size": 187294981,
+    "downloaded": "2026-11-25T18:23:00.640Z"
+  },
+  "jellify__Jellify-1.4.1-app-universal-release.apk": {
+    "app": "jellify",
+    "repo": "Jellify-Music/App",
+    "tag": "1.4.1",
+    "asset": "Jellify-1.4.1-app-universal-release.apk",
+    "url": "https://github.com/Jellify-Music/App/releases/download/1.4.1/Jellify-1.4.1-app-universal-release.apk",
+    "sha256": "5477c131708725058aa85e2e9dcf2ba9f402a22234e288462f8e734451c8f9ef",
+    "size": 154568915,
+    "downloaded": "2026-11-25T18:35:28.734Z"
+  },
+  "jellify__Jellify-1.4.1.ipa": {
+    "app": "jellify",
+    "repo": "Jellify-Music/App",
+    "tag": "1.4.1",
+    "asset": "Jellify-1.4.1.ipa",
+    "url": "https://github.com/Jellify-Music/App/releases/download/1.4.1/Jellify-1.4.1.ipa",
+    "sha256": "73eeda8dde7c75f5a648039e5f7cc089cfc26fad2aa2eedd634284317cdbe0b3",
+    "size": 38530310,
+    "downloaded": "2026-11-25T18:35:40.779Z"
+  },
+  "joplin__joplin-v3.7.12.apk": {
+    "app": "joplin",
+    "repo": "laurent22/joplin-android",
+    "tag": "android-v3.7.12",
+    "asset": "joplin-v3.7.12.apk",
+    "url": "https://github.com/laurent22/joplin-android/releases/download/android-v3.7.12/joplin-v3.7.12.apk",
+    "sha256": "f5cf596d7ffc62b61c7c98d2f2149e3624f4fd283b09e9acb0cca210745ced79",
+    "size": 177188735,
+    "downloaded": "2026-11-25T18:36:19.142Z"
+  },
+  "lichess__3108.apk": {
+    "app": "lichess",
+    "repo": "lichess-org/mobile",
+    "tag": "v0.31.8",
+    "asset": "3108.apk",
+    "url": "https://github.com/lichess-org/mobile/releases/download/v0.31.8/3108.apk",
+    "sha256": "4273b64e9200842737397f4708348e103af4f5a612b63ec5e225af241f58e0cb",
+    "size": 248847234,
+    "downloaded": "2026-11-25T18:45:18.154Z"
+  },
+  "lnreader__LNReader-v2.1.4-universal.apk": {
+    "app": "lnreader",
+    "repo": "LNReader/lnreader",
+    "tag": "v2.1.4",
+    "asset": "LNReader-v2.1.4-universal.apk",
+    "url": "https://github.com/LNReader/lnreader/releases/download/v2.1.4/LNReader-v2.1.4-universal.apk",
+    "sha256": "0618c21dd7593aada0e046f2d71df0615f418cd94f15b3add95a1ea81fbf19e0",
+    "size": 129067295,
+    "downloaded": "2026-11-25T18:41:12.056Z"
+  },
+  "localsend__LocalSend-1.19.0-android-arm64v8.apk": {
+    "app": "localsend",
+    "repo": "localsend/localsend",
+    "tag": "v1.19.0",
+    "asset": "LocalSend-1.19.0-android-arm64v8.apk",
+    "url": "https://github.com/localsend/localsend/releases/download/v1.19.0/LocalSend-1.19.0-android-arm64v8.apk",
+    "sha256": "bdc69f794ef493dbcf437f2ba8d959ece1712eff50f3f6274970f11c5bdb1bce",
+    "size": 46760593,
+    "downloaded": "2026-11-25T18:44:27.861Z"
+  },
+  "mastodon__mastodon-githubRelease.apk": {
+    "app": "mastodon",
+    "repo": "mastodon/mastodon-android",
+    "tag": "v2.13.7",
+    "asset": "mastodon-githubRelease.apk",
+    "url": "https://github.com/mastodon/mastodon-android/releases/download/v2.13.7/mastodon-githubRelease.apk",
+    "sha256": "72077e077a1b7d29bd45ceef77d6a2d39ddec501138deb61b2ebf7c471db2193",
+    "size": 4874552,
+    "downloaded": "2026-11-25T18:45:59.169Z"
+  },
+  "mattermost__Mattermost-unsigned.apk": {
+    "app": "mattermost",
+    "repo": "mattermost/mattermost-mobile",
+    "tag": "v2.46.1",
+    "asset": "Mattermost-unsigned.apk",
+    "url": "https://github.com/mattermost/mattermost-mobile/releases/download/v2.46.1/Mattermost-unsigned.apk",
+    "sha256": "d44a860437780b58a17dc2a08970bbd8c99789ee6d71dbe72f98dfe5b5acabad",
+    "size": 259652583,
+    "downloaded": "2026-11-25T18:21:50.921Z"
+  },
+  "mattermost__Mattermost-unsigned.ipa": {
+    "app": "mattermost",
+    "repo": "mattermost/mattermost-mobile",
+    "tag": "v2.46.1",
+    "asset": "Mattermost-unsigned.ipa",
+    "url": "https://github.com/mattermost/mattermost-mobile/releases/download/v2.46.1/Mattermost-unsigned.ipa",
+    "sha256": "9d0ba1143c2b6e4b3aa129d78f0bee054ce8a3d0ceb273daabf1b411fbe74045",
+    "size": 48745053,
+    "downloaded": "2026-11-25T18:22:02.674Z"
+  },
+  "minibits__app-universal-release.apk": {
+    "app": "minibits",
+    "repo": "minibits-cash/minibits_wallet",
+    "tag": "v0.4.5-beta.1",
+    "asset": "app-universal-release.apk",
+    "url": "https://github.com/minibits-cash/minibits_wallet/releases/download/v0.4.5-beta.1/app-universal-release.apk",
+    "sha256": "9eff5de790bc7b371ed29d2788bb150735018a7f0cbe58a1328d67eb59d84828",
+    "size": 152734631,
+    "downloaded": "2026-11-25T18:38:48.691Z"
+  },
+  "musicfree__app-universal-release.apk": {
+    "app": "musicfree",
+    "repo": "maotoumao/MusicFree",
+    "tag": "v0.6.2",
+    "asset": "app-universal-release.apk",
+    "url": "https://github.com/maotoumao/MusicFree/releases/download/v0.6.2/app-universal-release.apk",
+    "sha256": "bac055b963fe882b19ccbc81e434054395b254dc234fe9b74b2ec30b3405c797",
+    "size": 31675833,
+    "downloaded": "2026-11-25T18:42:46.683Z"
+  },
+  "nostros__nostros-v0.3.3.3-beta-universal.apk": {
+    "app": "nostros",
+    "repo": "KoalaSat/nostros",
+    "tag": "v0.3.3.3-beta",
+    "asset": "nostros-v0.3.3.3-beta-universal.apk",
+    "url": "https://github.com/KoalaSat/nostros/releases/download/v0.3.3.3-beta/nostros-v0.3.3.3-beta-universal.apk",
+    "sha256": "9457b390abab3f356a3ed830bedc84cbd873ee2b803b94c7ae8f0f710edf97e8",
+    "size": 33195491,
+    "downloaded": "2026-11-25T18:43:36.872Z"
+  },
+  "peach__app-prod-universal-release.apk": {
+    "app": "peach",
+    "repo": "Peach2Peach/peach-app",
+    "tag": "v0.69.0(403)",
+    "asset": "app-prod-universal-release.apk",
+    "url": "https://github.com/Peach2Peach/peach-app/releases/download/v0.69.0(403)/app-prod-universal-release.apk",
+    "sha256": "a635b04d7cc5a4a33c4ca06a693448f7f06fdc395e7ed670430c1ac85e75c1cb",
+    "size": 186304309,
+    "downloaded": "2026-11-25T18:37:21.465Z"
+  },
+  "pixelfed__app-release.apk": {
+    "app": "pixelfed",
+    "repo": "pixelfed/pixelfed-rn",
+    "tag": "v2.0.1",
+    "asset": "app-release.apk",
+    "url": "https://github.com/pixelfed/pixelfed-rn/releases/download/v2.0.1/app-release.apk",
+    "sha256": "616e080d0cc8e0f0881893f84032e58e7d67de6f0dcfbc3b94afd6c6aa5653bf",
+    "size": 120852580,
+    "downloaded": "2026-11-25T18:41:50.845Z"
+  },
+  "pocketpal__app-prod-release.apk": {
+    "app": "pocketpal",
+    "repo": "a-ghorbani/pocketpal-ai",
+    "tag": "v1.24.0",
+    "asset": "app-prod-release.apk",
+    "url": "https://github.com/a-ghorbani/pocketpal-ai/releases/download/v1.24.0/app-prod-release.apk",
+    "sha256": "027cbc808b1c0fa85ba954426ca06119bf2f8adb12a76b52d4f882517c58ed9c",
+    "size": 295190260,
+    "downloaded": "2026-11-25T18:40:10.354Z"
+  },
+  "rocketchat__android-release.apk": {
+    "app": "rocketchat",
+    "repo": "RocketChat/Rocket.Chat.ReactNative",
+    "tag": "4.78.1",
+    "asset": "android-release.apk",
+    "url": "https://github.com/RocketChat/Rocket.Chat.ReactNative/releases/download/4.78.1/android-release.apk",
+    "sha256": "46b176f3e8acdeb9fba1e7306bb16e2c9c4230e1472f8426b66e9edcad726681",
+    "size": 212596823,
+    "downloaded": "2026-11-25T18:32:02.414Z"
+  },
+  "rocketchat__ios-release.ipa": {
+    "app": "rocketchat",
+    "repo": "RocketChat/Rocket.Chat.ReactNative",
+    "tag": "4.78.1",
+    "asset": "ios-release.ipa",
+    "url": "https://github.com/RocketChat/Rocket.Chat.ReactNative/releases/download/4.78.1/ios-release.ipa",
+    "sha256": "ff908b061a5dd8b57e652941dd2496dd3a4fc724cc9df74e88e4357e12d7e20f",
+    "size": 70130828,
+    "downloaded": "2026-11-25T18:32:19.935Z"
+  },
+  "streamyfin__streamyfin-android-phone-apk.apk": {
+    "app": "streamyfin",
+    "repo": "streamyfin/streamyfin",
+    "tag": "v0.55.2",
+    "asset": "streamyfin-android-phone-apk.apk",
+    "url": "https://github.com/streamyfin/streamyfin/releases/download/v0.55.2/streamyfin-android-phone-apk.apk",
+    "sha256": "59c60176e5523f96085fdfc0ecaf360f867f2a37bb4dadbc9d7525d8ce26ebde",
+    "size": 218533778,
+    "downloaded": "2026-11-25T18:34:08.096Z"
+  },
+  "streamyfin__streamyfin-android.aab": {
+    "app": "streamyfin",
+    "repo": "streamyfin/streamyfin",
+    "tag": "v0.55.2",
+    "asset": "streamyfin-android.aab",
+    "url": "https://github.com/streamyfin/streamyfin/releases/download/v0.55.2/streamyfin-android.aab",
+    "sha256": "c36397afcd79643674023440db84d20e15aeaebcfaa0899530e6e79f85201adb",
+    "size": 130383094,
+    "downloaded": "2026-11-25T18:34:38.057Z"
+  },
+  "streamyfin__streamyfin-ios.ipa": {
+    "app": "streamyfin",
+    "repo": "streamyfin/streamyfin",
+    "tag": "v0.55.2",
+    "asset": "streamyfin-ios.ipa",
+    "url": "https://github.com/streamyfin/streamyfin/releases/download/v0.55.2/streamyfin-ios.ipa",
+    "sha256": "94db7d9bbfe655674ce9f48d429d4dd47a2b83061aa98bd829edb9ef1c737ea1",
+    "size": 73761532,
+    "downloaded": "2026-11-25T18:34:53.932Z"
+  },
+  "thunderbird__k9mail-25.0.apk": {
+    "app": "thunderbird",
+    "repo": "thunderbird/thunderbird-android",
+    "tag": "K9MAIL_25_0",
+    "asset": "k9mail-25.0.apk",
+    "url": "https://github.com/thunderbird/thunderbird-android/releases/download/K9MAIL_25_0/k9mail-25.0.apk",
+    "sha256": "b585b59b6b1f53f23cef5eab33ef80d1d5bd3581fa8e78acc064c33a23ec8df9",
+    "size": 11252576,
+    "downloaded": "2026-11-25T18:46:01.525Z"
+  },
+  "tooot__tooot-v4.10.3.apk": {
+    "app": "tooot",
+    "repo": "tooot-app/app",
+    "tag": "v4.10.3",
+    "asset": "tooot-v4.10.3.apk",
+    "url": "https://github.com/tooot-app/app/releases/download/v4.10.3/tooot-v4.10.3.apk",
+    "sha256": "e981ec1db1e5e49a701eb8bd7dd450f2be3cdf0e1878d377759fd27bdfacd19a",
+    "size": 44078283,
+    "downloaded": "2026-11-25T18:44:18.178Z"
+  },
+  "zeus__zeus-v13.2.5-universal.apk": {
+    "app": "zeus",
+    "repo": "ZeusLN/zeus",
+    "tag": "v13.2.5",
+    "asset": "zeus-v13.2.5-universal.apk",
+    "url": "https://github.com/ZeusLN/zeus/releases/download/v13.2.5/zeus-v13.2.5-universal.apk",
+    "sha256": "bc134bb8de2f641d7c7d5ace5b9df5ac7e716a993973346699041b28932c67bd",
+    "size": 206807143,
+    "downloaded": "2026-11-25T18:33:07.332Z"
+  },
+  "zeus__zeus-v13.2.5.ipa": {
+    "app": "zeus",
+    "repo": "ZeusLN/zeus",
+    "tag": "v13.2.5",
+    "asset": "zeus-v13.2.5.ipa",
+    "url": "https://github.com/ZeusLN/zeus/releases/download/v13.2.5/zeus-v13.2.5.ipa",
+    "sha256": "c8b1787e8e52d6b32f32ca520b9b3215ddcc66653d0b4978fb53b01c8c1b0d67",
+    "size": 80422681,
+    "downloaded": "2026-11-25T18:33:23.492Z"
+  },
+  "zulip__app-release.aab": {
+    "app": "zulip",
+    "repo": "zulip/zulip-mobile",
+    "tag": "v27.235",
+    "asset": "app-release.aab",
+    "url": "https://github.com/zulip/zulip-mobile/releases/download/v27.235/app-release.aab",
+    "sha256": "a1dfa8ea35ba34ad2516b093f54f322d65dff889b9b825716414479a29e52139",
+    "size": 64880296,
+    "downloaded": "2026-11-25T18:43:01.883Z"
+  }
+}
