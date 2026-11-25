@@ -144,10 +144,12 @@ export function classifyHost(rawHost: string): HostIssue | undefined {
 
 /**
  * URLs that frameworks and SDKs put in every release bundle, found by scanning real release builds and the public
- * packages: React Native's dev server default and the Sentry SDK's Spotlight sidecar. Matched as whole URLs, in
- * Hermes and plain JavaScript bundles alike, so an app's own `http://localhost:8081/api` is still reported.
+ * packages: React Native's dev server default, the Sentry SDK's Spotlight sidecar, and axios's base for parsing
+ * relative URLs outside a browser (`lib/platform/common/utils.js`: `window.location.href || 'http://localhost'`, in
+ * 6 of 31 benchmark apps). Matched as whole URLs, in Hermes and plain JavaScript bundles alike, so an app's own
+ * `http://localhost:8081/api` or `http://localhost/api` is still reported, and config values are always checked.
  */
-const FRAMEWORK_URLS = new Set(['http://localhost:8081/', 'http://localhost:8969/stream']);
+const FRAMEWORK_URLS = new Set(['http://localhost:8081/', 'http://localhost:8969/stream', 'http://localhost']);
 
 const HOST_FIX ='Make sure release builds use production URLs (check env-based config such as EXPO_PUBLIC_* or app.config.ts). If this host is intended, add it to allowHosts in release-lint.config.json.';
 

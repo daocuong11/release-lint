@@ -104,6 +104,20 @@ describe('host rules', () => {
     expect(ids(run(withBundle('http://localhost:8969/api')))).toEqual(['host/localhost']);
   });
 
+  it("ignores axios's URL-parsing base, found in every bundle that uses axios, but not longer localhost URLs", () => {
+    expect(run(withBundle('http://localhost', 'localhost'))).toEqual([]);
+    const js = "var origin=n&&window.location.href||'http://localhost';";
+    expect(run(app({ bundle: { file: BUNDLE, kind: 'javascript', approximate: false, strings: [js] } }))).toEqual([]);
+    for (const url of ['http://localhost/', 'http://localhost/api', 'http://localhost:3000', 'https://localhost']) {
+      expect(ids(run(withBundle(url)))).toEqual(['host/localhost']);
+    }
+  });
+
+  it('still reports a bare http://localhost set in the app config', () => {
+    const model = app({ expoConfig: { file: 'app.config', value: { extra: { apiUrl: 'http://localhost' } } } });
+    expect(run(model)).toMatchObject([{ ruleId: 'host/localhost', severity: 'error', evidence: 'http://localhost' }]);
+  });
+
   it('ignores framework URLs inside a plain JavaScript bundle too, but not the app’s own URLs next to them', () => {
     const js = 'var a="http://localhost:8081/",b="http://localhost:8969/stream",c="http://localhost:3000/api";';
     const model = app({ bundle: { file: BUNDLE, kind: 'javascript', approximate: false, strings: [js] } });

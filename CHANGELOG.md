@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.3.5
+
+- **No more `host/localhost` for axios's built-in `http://localhost`.** axios uses it as the base for parsing
+  relative URLs outside a browser (`lib/platform/common/utils.js`), so it is in every bundle that uses axios: 6 of the
+  31 apps in the benchmark. Like React Native's dev-server default, the exact string is ignored in bundles. Longer
+  localhost URLs (`http://localhost/api`, `http://localhost:3000`) and values in the app config are still reported.
+
 ## 0.3.4
 
 Fixes from running release-lint on 39 public release builds of 31 open-source apps (React Native, Expo, Flutter and
