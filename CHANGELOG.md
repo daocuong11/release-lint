@@ -1,5 +1,27 @@
 # Changelog
 
+## 0.3.4
+
+Fixes from running release-lint on 39 public release builds of 31 open-source apps (React Native, Expo, Flutter and
+native Android).
+
+- **`secret/private-key` no longer fires on a bare PEM header.** Crypto libraries ship
+  `-----BEGIN … PRIVATE KEY-----` strings to parse PEM files, so the rule raised errors on six real apps with no key
+  present. It now needs at least 64 base64 characters of key body after the header (real or escaped newlines,
+  optional `Proc-Type` / `DEK-Info` lines). The evidence is the header line only; a key body is never printed.
+- **Hermes bundles decode exactly** when a library uses the one-character property key `'\0'`. That single key made
+  the string table check fail, so bundles of React Native 0.83 (bytecode v96) and some v98 apps fell back to
+  approximate strings (`scan/hermes-approximate`).
+- **Large network security configs are read**, up to 32 MiB; anything larger is reported as `scan/unreadable`. An
+  8 MB config listing 65,541 hosts used to be skipped without a word.
+- **`android:usesCleartextTraffic` is not reported when a network security config overrides it** (Android 7+, minSdk
+  24 and up). With a lower minSdk, the finding says it applies to Android 6 and older.
+- **Certificate revocation hosts** (CRL and OCSP of well-known CAs, such as `c.lencr.org` or `o.pki.goog`) are no
+  longer reported as plain-HTTP exceptions: they serve signed data over HTTP by design.
+- **More than 20 plain-HTTP hosts in one config are summed up** in one finding, local and development hosts first.
+- **A zipped `.app` without the `Payload/` folder** (as some projects publish unsigned builds) is read as an `.ipa`.
+- **Flavored release APKs are found** without a file argument (`outputs/apk/<flavor>/release/`).
+
 ## 0.3.3
 
 - `debug/user-ca-trusted` now also reports user CAs inside `<debug-overrides>` when the build is debuggable, because
