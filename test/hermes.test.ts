@@ -35,6 +35,19 @@ describe('readHermesStrings', () => {
     expect(result).toEqual({ version: 98, strings: ['application/json', ...identifiers], approximate: false });
   });
 
+  it('accepts a lone NUL property key, which real bundles have (Mattermost, Joplin, Rocket.Chat, PocketPal)', () => {
+    const identifiers = ['api', '\u0000', 'key', 'print'];
+    for (const [version, functionHeaderSize] of [[98, 12], [96, 16]] as const) {
+      const result = readHermesStrings(hbc({ strings: STRINGS, identifiers, version, functionCount: 3, functionHeaderSize }));
+      expect(result).toEqual({ version, strings: [...STRINGS, ...identifiers], approximate: false });
+    }
+  });
+
+  it('still rejects a layout guess whose identifiers are full of NUL bytes', () => {
+    const identifiers = Array.from({ length: 40 }, (_, i) => `id\u0000${i}`);
+    expect(readHermesStrings(hbc({ strings: ['a'], identifiers })).approximate).toBe(true);
+  });
+
   it('falls back to printable runs when no known layout fits', () => {
     const file = hbc({ strings: [FAKE_KEY], identifiers: ['key'], functionHeaderSize: 20 });
     const result = readHermesStrings(file);

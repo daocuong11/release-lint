@@ -11,10 +11,13 @@ const KIND_COUNT_MASK = 0x7fffffff;
 const MIN_PRINTABLE_RUN = 4;
 /**
  * The identifier table holds every property key, not only valid JS identifiers (hermesc puts
- * 'Content-Type', '@@iterator', 'x y' there), so the only check on its strings is "no NUL byte",
- * which a wrong layout guess produces and real keys do not.
+ * 'Content-Type', '@@iterator', 'x y' there), so the only check on its strings is "almost no NUL bytes":
+ * a wrong layout guess decodes garbage full of them. A few real keys do contain one: libraries use the
+ * one-character key '\0' (one in each of Mattermost, Joplin, Rocket.Chat and PocketPal), so a handful is allowed.
  */
 const NUL = '\u0000';
+const MAX_NUL_IDENTIFIERS_MIN = 2;
+const MAX_NUL_IDENTIFIERS_SHARE = 0.001;
 /** Strings may share storage, so a hostile table could decode the same megabytes millions of times. */
 const MAX_DECODED_BYTES = 256 * 1024 * 1024;
 const MAX_FALLBACK_STRINGS = 1_000_000;
@@ -86,6 +89,8 @@ function tryLayout(buf: Buffer, functionHeaderSize: number): string[] | undefine
     }
 
     const strings: string[] = [];
+    const maxNulIdentifiers = Math.max(MAX_NUL_IDENTIFIERS_MIN, Math.ceil(identifierCount * MAX_NUL_IDENTIFIERS_SHARE));
+    let nulIdentifiers = 0;
     let decoded = 0;
     for (let i = 0; i < stringCount; i++) {
       const entry = u32(small + i * 4);
@@ -104,7 +109,7 @@ function tryLayout(buf: Buffer, functionHeaderSize: number): string[] | undefine
       }
       const bytes = buf.subarray(storage + offset, storage + offset + byteLength);
       const value = bytes.toString(utf16 ? 'utf16le' : 'latin1');
-      if (identifierIndexes.has(i) && value.includes(NUL)) {
+      if (identifierIndexes.has(i) && value.includes(NUL) && ++nulIdentifiers > maxNulIdentifiers) {
         return undefined;
       }
       strings.push(value);
