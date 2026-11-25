@@ -1,4 +1,4 @@
-import { zipSync } from 'fflate';
+import { unzipSync, zipSync } from 'fflate';
 import { describe, expect, it } from 'vitest';
 import { readApp } from '../src/formats/app.js';
 import { ReleaseLintError } from '../src/types.js';
@@ -190,6 +190,21 @@ describe('readApp (unsupported files)', () => {
 
   it('rejects a zip that is not an app', async () => {
     await expect(readApp(await writeTemp('a.zip', zipSync({ 'readme.txt': text('hi') })))).rejects.toThrow(ReleaseLintError);
+  });
+
+  it('reads a zipped .app without the Payload/ folder, as Mattermost publishes its unsigned .ipa', async () => {
+    const files = unzipSync(ipa({ bundle: 'var u="https://api.staging.example.com";' }));
+    const rootLevel = Object.fromEntries(Object.entries(files).map(([name, data]) => [name.replace(/^Payload\//, ''), data]));
+    const model = await readApp(await writeTemp('unsigned.ipa', zipSync(rootLevel)));
+    expect(model.platform).toBe('ios');
+    expect(model.bundle?.file).toBe('Payload/Demo.app/main.jsbundle');
+    expect(model.bundle?.strings).toEqual(['var u="https://api.staging.example.com";']);
+  });
+
+  it('names what is missing when a zip is not an app', async () => {
+    await expect(readApp(await writeTemp('a.zip', zipSync({ 'readme.txt': text('hi') })))).rejects.toThrow(
+      'Not an .ipa, .aab or .apk file: no Payload/<App>.app/, AndroidManifest.xml or base/manifest/AndroidManifest.xml inside',
+    );
   });
 
   it('rejects an .ipa without Info.plist', async () => {
