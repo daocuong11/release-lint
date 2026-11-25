@@ -54,7 +54,7 @@ function secretRules(texts: Text[]): Finding[] {
           ruleId: p.id,
           severity: p.severity,
           message: p.message,
-          evidence: p.mask === false ? match : mask(match),
+          evidence: p.evidence ? p.evidence(match) : mask(match),
           location,
           fix: p.fix,
         })),

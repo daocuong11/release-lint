@@ -15,11 +15,22 @@ export interface SecretPattern {
   pattern: RegExp;
   message: string;
   fix: string;
-  /** False for matches that contain no secret themselves, such as a PEM header. */
-  mask?: boolean;
+  /** What the report shows instead of the masked match, for a match that holds more than a key prefix (a whole PEM key). */
+  evidence?: (match: string) => string;
   /** Extra check on a match, for keys that are only secret in some forms. */
   isSecret?: (match: string) => boolean;
 }
+
+/** A real key body is hundreds of base64 characters; parser strings ship the header with nothing (or a few characters) after it. */
+const MIN_PEM_BODY = 64;
+const PEM_HEADER = /^-----BEGIN [A-Z ]{1,32}-----/;
+
+/** True when at least MIN_PEM_BODY base64 characters follow the header, not counting Proc-Type / DEK-Info lines. */
+const hasPemBody = (match: string): boolean =>
+  match
+    .replace(PEM_HEADER, '')
+    .replace(/(?:Proc-Type|DEK-Info): [^\r\n\\]*/g, '')
+    .replace(/\\[rn]|\s/g, '').length >= MIN_PEM_BODY;
 
 const isServiceRoleJwt = (token: string): boolean => {
   try {
@@ -41,7 +52,19 @@ export const SECRET_PATTERNS: readonly SecretPattern[] = [
   { id: 'secret/stripe-secret-key', severity: 'error', pattern: /(?<![\w-])[rs]k_live_[0-9A-Za-z]{20,256}/g, message: 'Stripe live secret key', fix: `Secret keys belong on your server: ${MOVE_TO_SERVER}` },
   { id: 'secret/stripe-test-secret-key', severity: 'warning', pattern: /(?<![\w-])[rs]k_test_[0-9A-Za-z]{20,256}/g, message: 'Stripe test secret key', fix: 'Move calls that need a secret key to your server; only the publishable key (pk_) belongs in the app.' },
   { id: 'secret/aws-access-key', severity: 'error', pattern: /(?<![\w-])(?:AKIA|ASIA)[0-9A-Z]{16}(?![0-9A-Za-z])/g, message: 'AWS access key ID (its secret key is usually right next to it)', fix: `Use Cognito or a backend that signs requests; ${MOVE_TO_SERVER}` },
-  { id: 'secret/private-key', severity: 'error', pattern: /-----BEGIN (?:RSA |EC |DSA |OPENSSH |ENCRYPTED )?PRIVATE KEY-----/g, mask: false, message: 'Private key', fix: 'Remove the key from the app and replace it: anyone with the app file has a copy.' },
+  {
+    id: 'secret/private-key',
+    severity: 'error',
+    // Header, optional Proc-Type / DEK-Info lines, then the base64 body. Newlines may be real or escaped (`\n` in a
+    // plain JS bundle). The bare header alone is what PEM parsers ship, so a body is required (checked by hasPemBody).
+    pattern:
+      /-----BEGIN (?:RSA |EC |DSA |OPENSSH |ENCRYPTED )?PRIVATE KEY-----(?:(?:\\[rn]|\s){1,8}(?:Proc-Type|DEK-Info): [^\r\n\\]{1,128}){0,2}(?:[A-Za-z0-9+/=]|\\[rn]|\s){1,8192}/g,
+    isSecret: hasPemBody,
+    // Never the key itself: only the header line.
+    evidence: (match) => match.match(PEM_HEADER)?.[0] ?? '-----BEGIN PRIVATE KEY-----',
+    message: 'Private key',
+    fix: 'Remove the key from the app and replace it: anyone with the app file has a copy.',
+  },
   { id: 'secret/openai-api-key', severity: 'error', pattern: /(?<![\w-])sk-(?:proj|svcacct|admin)-[A-Za-z0-9_-]{20,256}/g, message: 'OpenAI API key', fix: `An LLM key in an app gets abused within days: ${MOVE_TO_SERVER}` },
   { id: 'secret/anthropic-api-key', severity: 'error', pattern: /(?<![\w-])sk-ant-[A-Za-z0-9_-]{20,256}/g, message: 'Anthropic API key', fix: `An LLM key in an app gets abused within days: ${MOVE_TO_SERVER}` },
   { id: 'secret/github-token', severity: 'error', pattern: /(?<![\w-])(?:gh[pousr]_[A-Za-z0-9]{36,255}|github_pat_[A-Za-z0-9_]{40,255})/g, message: 'GitHub token', fix: MOVE_TO_SERVER },

@@ -9,7 +9,7 @@ const STRIPE_PUBLISHABLE = 'pk_' + 'live_' + '4eC39HqLyjWDarjtT1zdp7dc';
 const GOOGLE_KEY = 'AI' + 'za' + 'SyD-0123456789abcdefghijklmnopqrstu';
 const AWS_KEY = 'AK' + 'IA' + 'IOSFODNN7EXAMPLE';
 const OPENAI_KEY = 'sk-' + 'proj-' + 'abcdefghijklmnopqrstuvwxyz0123456789';
-const PEM = '-----BEGIN ' + 'RSA PRIVATE KEY-----\nMIIEowIBAAKCAQEA\n-----END RSA PRIVATE KEY-----';
+const PEM = '-----BEGIN ' + 'RSA PRIVATE KEY-----\n' + 'MIIEowIBAAKCAQEA'.repeat(4) + '\n' + 'w'.repeat(64) + '\n-----END RSA PRIVATE KEY-----';
 const jwt = (payload: object) =>
   ['{"alg":"HS256","typ":"JWT"}', JSON.stringify(payload)].map((part) => Buffer.from(part).toString('base64url')).join('.') + '.' + 'x'.repeat(43);
 
