@@ -12,11 +12,11 @@ and the current `findings.csv` and `RESULTS.md` come from a re-run on 0.3.4.
 | 2 | Network config over 8 MiB skipped | **Fixed** (c00b0a1). Read up to 32 MiB, larger is `scan/unreadable`. BlueWallet's 65,541 hosts are now reported (one summary). |
 | 3 | `usesCleartextTraffic` despite a network config | **Fixed** (c00b0a1). Not reported for minSdk ≥ 24; below that the message says Android 6 and older. |
 | 4 | `.ipa` without `Payload/` | **Fixed** (5b594a9). Mattermost's unsigned .ipa now scans. |
-| 5 | SDK defaults and placeholder text | **Not fixed, on purpose.** `http://localhost:3000/api` and `http://localhost:8545` are also what an app's own dev server or local Ethereum node use, so suppressing them would hide real mistakes. Placeholders cannot be told from real hosts. Both stay warnings. |
+| 5 | SDK defaults and placeholder text (Peach `localhost:8545` confirmed: ethers 6.16 `provider-jsonrpc.ts` falls back to it) | **Not fixed, on purpose.** `http://localhost:3000/api` and `http://localhost:8545` are also what an app's own dev server or local Ethereum node use, so suppressing them would hide real mistakes. Placeholders cannot be told from real hosts. Both stay warnings. |
 | 6 | `secret/private-key` on a bare PEM header | **Fixed** (fa757fa). Needs 64+ base64 characters of key body; evidence is the header only. |
 | 7 | Grouping mixes verdicts | Unchanged (benchmark format). |
 | 8 | CRL/OCSP hosts | **Fixed** (c00b0a1). Well-known CA revocation domains are skipped. |
-| 9 | Bare `http://localhost` | Open. Source library still not identified. Exact decoding showed that in Rocket.Chat it is really `http://localhost:3000`. |
+| 9 | Bare `http://localhost` | **Cause found, fix proposed for 0.3.5.** It is axios: `lib/platform/common/utils.js` has `const origin = (hasBrowserEnv && window.location.href) || 'http://localhost'`, a base for parsing relative URLs outside a browser (checked in axios 1.7.4 and 1.20.0). 8 rows in 6 apps. Pixelfed has no axios, so its copy is still unexplained. In Rocket.Chat it is really `http://localhost:3000`. |
 | 10 | "dev" subdomain heuristic | Open (documented limit). |
 | – | Flavored APKs not found | **Fixed** (d4a79a3). |
 
