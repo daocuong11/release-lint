@@ -79,10 +79,14 @@ export interface AppModel {
     /** Android `android:debuggable`; iOS `get-task-allow` (development signing). */
     debuggable?: boolean;
     usesCleartextTraffic?: boolean;
+    /** Android: the manifest names a network security config. Android 7+ then ignores `usesCleartextTraffic`. */
+    networkSecurityConfig?: boolean;
     allowsArbitraryLoads?: boolean;
     /** iOS: built for the Simulator (Info.plist DTPlatformName). */
     simulator?: boolean;
   };
+  /** Android `uses-sdk` `android:minSdkVersion`, when it is a number. */
+  minSdk?: number;
   deepLinks: DeepLink[];
   /** Present only when the app has any. */
   networkExceptions?: NetworkException[];

@@ -8,6 +8,11 @@ const NETWORK_CONFIG_ROOT = 'network-security-config';
 /** Only files containing the root element's name are parsed: UTF-8 (protobuf, UTF-8 pools) or UTF-16 (aapt2's default pool). */
 const NETWORK_CONFIG_MARKERS = [Buffer.from(NETWORK_CONFIG_ROOT, 'utf8'), Buffer.from(NETWORK_CONFIG_ROOT, 'utf16le')];
 const AXML_MAGIC = 0x0003;
+/**
+ * Other config files are kilobytes, but a network security config can list every LAN address (BlueWallet: 8.1 MB
+ * compiled). Larger XML resources are reported as unreadable, never skipped silently.
+ */
+const MAX_NETWORK_CONFIG_BYTES = 32 * 1024 * 1024;
 
 /** Where an Android package keeps its manifest, assets and XML resources, and how they are encoded. */
 interface Layout {
@@ -58,6 +63,9 @@ async function readAndroid(zip: ZipArchive, file: string, layout: Layout): Promi
   };
   const debuggable = flag('debuggable');
   const usesCleartextTraffic = flag('usesCleartextTraffic');
+  const networkSecurityConfig = application?.attributes['android:networkSecurityConfig'] !== undefined;
+  const minSdkText = manifest.children.find((child) => child.name === 'uses-sdk')?.attributes['android:minSdkVersion'];
+  const minSdk = minSdkText !== undefined && /^\d{1,3}$/.test(minSdkText) ? Number(minSdkText) : undefined;
 
   const problems: string[] = [];
   const bundleName = `${layout.assets}index.android.bundle`;
@@ -76,7 +84,9 @@ async function readAndroid(zip: ZipArchive, file: string, layout: Layout): Promi
     flags: {
       ...(debuggable !== undefined ? { debuggable } : {}),
       ...(usesCleartextTraffic !== undefined ? { usesCleartextTraffic } : {}),
+      ...(networkSecurityConfig ? { networkSecurityConfig } : {}),
     },
+    ...(minSdk !== undefined ? { minSdk } : {}),
     deepLinks: application ? intentFilterHosts(application, layout.manifest) : [],
     ...(networkExceptions.length > 0 ? { networkExceptions } : {}),
     ...(updates ? { updates } : {}),
@@ -120,11 +130,12 @@ function updatesChannel(application: XmlElement, file: string): AppModel['update
  * would be reported too. Resolve the reference if that ever shows up in a real build.
  */
 async function readNetworkExceptions(zip: ZipArchive, layout: Layout, problems: string[]): Promise<NetworkException[]> {
-  const names = [...zip.entries.values()].filter((e) => layout.resourceXml.test(e.name) && e.size <= MAX_CONFIG_BYTES).map((e) => e.name);
+  // No size filter here: an entry over the limit makes readOptional record a problem (fail closed), not a silent skip.
+  const names = [...zip.entries.values()].filter((e) => layout.resourceXml.test(e.name)).map((e) => e.name);
   const found: NetworkException[] = [];
   for (const name of names) {
     const parse = (buf: Buffer) => (NETWORK_CONFIG_MARKERS.some((marker) => buf.includes(marker)) ? layout.parseResource(buf) : undefined);
-    const root = await readOptional(zip, name, problems, parse, MAX_CONFIG_BYTES);
+    const root = await readOptional(zip, name, problems, parse, MAX_NETWORK_CONFIG_BYTES);
     if (root?.name === NETWORK_CONFIG_ROOT) found.push(...networkConfigExceptions(root, name));
   }
   return found;

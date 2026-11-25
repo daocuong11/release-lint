@@ -238,6 +238,8 @@ export const ANDROID_ATTR_IDS: Record<string, number> = {
   usesCleartextTraffic: 0x010104ec,
   autoVerify: 0x010104ee,
   value: 0x01010024,
+  minSdkVersion: 0x0101020c,
+  networkSecurityConfig: 0x01010527,
 };
 
 const u16 = (n: number) => {
@@ -277,7 +279,9 @@ export function axml(root: ProtoEl, { utf8 = false, stripNames = false }: { utf8
   };
   walk(root);
   const pool = [...androidNames.map((n) => (stripNames ? '' : n)), ...new Set(others)];
-  const index = (s: string, android = false) => (android ? androidNames.indexOf(s) : pool.indexOf(s, androidNames.length));
+  // A map, not indexOf: configs with tens of thousands of hosts must build in linear time.
+  const positions = new Map(pool.slice(androidNames.length).map((s, i) => [s, androidNames.length + i]));
+  const index = (s: string, android = false) => (android ? androidNames.indexOf(s) : (positions.get(s) ?? -1));
 
   const encoded = pool.map((s) => {
     if (utf8) {

@@ -16,10 +16,14 @@ const TYPE_INT_DEC = 0x10;
 const TYPE_INT_HEX = 0x11;
 const TYPE_INT_BOOLEAN = 0x12;
 
-/** Real manifests are a few levels deep with a few hundred elements; these limits stop hostile files. */
+/**
+ * Real manifests are a few levels deep with a few hundred elements, but a network security config can list every
+ * LAN address (BlueWallet: 65,540 <domain> elements in 8 MB). These limits stop hostile files; the input itself is
+ * capped in bytes by the caller, which bounds the element count too.
+ */
 const MAX_DEPTH = 100;
-const MAX_ELEMENTS = 20_000;
-const MAX_ATTRIBUTES = 100_000;
+const MAX_ELEMENTS = 250_000;
+const MAX_ATTRIBUTES = 1_000_000;
 /** Strings are decoded on demand; many entries pointing at one huge string must not multiply memory. */
 const MAX_DECODED_BYTES = 16 * 1024 * 1024;
 /** A host in <domain> is short; repeating one cached string in many text chunks must not grow without bound. */

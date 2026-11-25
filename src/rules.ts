@@ -200,24 +200,72 @@ const CLEARTEXT_FIX = {
 const USER_CA_FIX = 'Move <certificates src="user"/> into <debug-overrides>, which only applies to debuggable builds.';
 const BASE_CLEARTEXT_FIX = 'Remove cleartextTrafficPermitted from <base-config>, or allow plain HTTP only for the hosts that need it with a <domain-config>.';
 
-function networkRules(app: AppModel, { allowHosts }: RuleOptions): Finding[] {
-  return (app.networkExceptions ?? []).flatMap(({ kind, host, evidence, file, debugOverrides }): Finding[] => {
+/**
+ * Certificate authorities' CRL and OCSP hosts. Revocation data is signed by the CA and served over plain HTTP by design,
+ * so apps that check revocation must allow it (Bitwarden, Peach and Element X do, with comments saying so).
+ */
+const REVOCATION_DOMAINS = [
+  'lencr.org', 'pki.goog', 'digicert.com', 'digicert.cn', 'digicert.eu', 'sectigo.com', 'usertrust.com', 'comodoca.com',
+  'certainly.com', 'globalsign.com', 'globalsign.net', 'amazontrust.com', 'amznts.eu', 'godaddy.com', 'starfieldtech.com',
+  'identrust.com', 'ssl.com', 'entrust.net', 'certum.pl', 'geotrust.com', 'rapidssl.com', 'thawte.com', 'quovadisglobal.com',
+  'buypass.no', 'harica.gr', 'swisssign.ch', 'telesec.de', 'actalis.it', 'e-szigno.hu', 'digitalcertvalidation.com',
+  'trust-provider.com', 'secomtrust.net', 'microsoft.com',
+];
+/** Past this many plain-HTTP hosts in one file, they are summed up in one finding instead of one per host. */
+const MAX_LISTED_HOSTS = 20;
+const SUMMARY_SAMPLE = 5;
+
+/** A network finding, with the host it is about when it is a per-host plain-HTTP exception (kept out of the report). */
+interface NetworkItem {
+  finding: Finding;
+  host?: string;
+  devHost?: boolean;
+}
+
+function networkRules(app: AppModel, options: RuleOptions): Finding[] {
+  const items = networkItems(app, options);
+  const perHost = items.filter((i) => i.host !== undefined);
+  const counts = new Map<string, number>();
+  for (const { finding } of perHost) counts.set(finding.location, (counts.get(finding.location) ?? 0) + 1);
+  const longFiles = new Set([...counts].filter(([, n]) => n > MAX_LISTED_HOSTS).map(([file]) => file));
+  const kept = items.filter((i) => !(i.host !== undefined && longFiles.has(i.finding.location))).map((i) => i.finding);
+  const summed = [...longFiles].map((file) => cleartextSummary(perHost.filter((i) => i.finding.location === file), file, app.platform));
+  return [...kept, ...summed];
+}
+
+/** One finding for a long host list: development hosts first, so the ones that matter are visible. */
+function cleartextSummary(items: NetworkItem[], file: string, platform: AppModel['platform']): Finding {
+  const dev = items.filter((i) => i.devHost);
+  const ordered = [...dev, ...items.filter((i) => !i.devHost)].map((i) => i.host ?? '');
+  const rest = ordered.length - SUMMARY_SAMPLE;
+  return {
+    ruleId: 'debug/cleartext-exception',
+    severity: 'warning',
+    message: `Plain HTTP is allowed for ${items.length} hosts${dev.length > 0 ? `, ${dev.length} of them local or development hosts` : ''}`,
+    evidence: `${ordered.slice(0, SUMMARY_SAMPLE).join(', ')}${rest > 0 ? ` (+${rest} more)` : ''}`,
+    location: file,
+    fix: CLEARTEXT_FIX[platform],
+  };
+}
+
+function networkItems(app: AppModel, { allowHosts }: RuleOptions): NetworkItem[] {
+  return (app.networkExceptions ?? []).flatMap(({ kind, host, evidence, file, debugOverrides }): NetworkItem[] => {
     const at = { evidence, location: file };
     // <debug-overrides> is harmless in a release build, but a debuggable build (debug/debuggable) turns it on.
     if (debugOverrides && !app.flags.debuggable) return [];
     if (kind === 'user-ca' && debugOverrides) {
-      return [{ ruleId: 'debug/user-ca-trusted', severity: 'warning', message: "Trusts user-installed CA certificates, because this build is debuggable and <debug-overrides> applies to it: anyone who adds one to their phone can read the app's HTTPS traffic", ...at, fix: 'Build the release variant without android:debuggable; <debug-overrides> then no longer applies.' }];
+      return [{ finding: { ruleId: 'debug/user-ca-trusted', severity: 'warning', message: "Trusts user-installed CA certificates, because this build is debuggable and <debug-overrides> applies to it: anyone who adds one to their phone can read the app's HTTPS traffic", ...at, fix: 'Build the release variant without android:debuggable; <debug-overrides> then no longer applies.' } }];
     }
     if (kind === 'user-ca') {
-      return [{ ruleId: 'debug/user-ca-trusted', severity: 'warning', message: "Trusts user-installed CA certificates: anyone who adds one to their phone can read the app's HTTPS traffic", ...at, fix: USER_CA_FIX }];
+      return [{ finding: { ruleId: 'debug/user-ca-trusted', severity: 'warning', message: "Trusts user-installed CA certificates: anyone who adds one to their phone can read the app's HTTPS traffic", ...at, fix: USER_CA_FIX } }];
     }
     if (host === '*') {
-      return [{ ruleId: 'debug/cleartext-traffic', severity: 'warning', message: 'Plain HTTP is allowed to every host', ...at, fix: BASE_CLEARTEXT_FIX }];
+      return [{ finding: { ruleId: 'debug/cleartext-traffic', severity: 'warning', message: 'Plain HTTP is allowed to every host', ...at, fix: BASE_CLEARTEXT_FIX } }];
     }
-    if (isAllowed(host, allowHosts)) return [];
+    if (isAllowed(host, allowHosts) || REVOCATION_DOMAINS.some((d) => isUnder(normalizeHost(host), d))) return [];
     const issue = classifyHost(host);
     const message = issue ? `Plain HTTP is allowed for a development host. ${issue.message}` : 'Plain HTTP is allowed for this host';
-    return [{ ruleId: 'debug/cleartext-exception', severity: 'warning', message, ...at, fix: CLEARTEXT_FIX[app.platform] }];
+    return [{ finding: { ruleId: 'debug/cleartext-exception', severity: 'warning', message, ...at, fix: CLEARTEXT_FIX[app.platform] }, host, devHost: issue !== undefined }];
   });
 }
 
@@ -241,6 +289,9 @@ function updatesRules({ updates }: AppModel): Finding[] {
 }
 
 // ---------------------------------------------------------------- release settings
+
+/** Android 7.0: from this API level, a network security config replaces android:usesCleartextTraffic. */
+const ANDROID_7_API = 24;
 
 function releaseRules(app: AppModel): Finding[] {
   const { bundle, flags } = app;
@@ -282,8 +333,19 @@ function releaseRules(app: AppModel): Finding[] {
   if (app.unexported) {
     findings.push({ ruleId: 'scan/signing-not-checked', severity: 'info', message: 'Signing not checked: Xcode signs the app again when you export it', evidence: 'iOS .app / .xcarchive', location: app.file, fix: 'To check development signing (get-task-allow) too, export the archive (Distribute App) and scan the .ipa.' });
   }
-  if (flags.usesCleartextTraffic) {
-    findings.push({ ruleId: 'debug/cleartext-traffic', severity: 'warning', message: 'Plain HTTP is allowed to every host', evidence: 'android:usesCleartextTraffic="true"', location: 'AndroidManifest.xml', fix: 'Remove usesCleartextTraffic, or allow HTTP only for specific hosts with a network security config.' });
+  // Android 7+ (API 24) ignores usesCleartextTraffic when a network security config exists; the config's own findings cover it.
+  const overriddenFrom7 = flags.networkSecurityConfig === true;
+  if (flags.usesCleartextTraffic && !(overriddenFrom7 && (app.minSdk ?? 0) >= ANDROID_7_API)) {
+    findings.push({
+      ruleId: 'debug/cleartext-traffic',
+      severity: 'warning',
+      message: overriddenFrom7
+        ? 'Plain HTTP is allowed to every host on Android 6 and older (Android 7+ follows the network security config instead)'
+        : 'Plain HTTP is allowed to every host',
+      evidence: 'android:usesCleartextTraffic="true"',
+      location: 'AndroidManifest.xml',
+      fix: 'Remove usesCleartextTraffic, or allow HTTP only for specific hosts with a network security config.',
+    });
   }
   if (flags.allowsArbitraryLoads) {
     findings.push({ ruleId: 'debug/arbitrary-loads', severity: 'warning', message: 'App Transport Security is turned off for every host', evidence: 'NSAllowsArbitraryLoads = true', location: 'Info.plist', fix: 'Remove NSAllowsArbitraryLoads, or use NSExceptionDomains for the few hosts that need it. App Review asks for a reason.' });
