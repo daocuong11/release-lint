@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.3.9
+
+- New rule `secret/groq-api-key`: Groq API keys (`gsk_`). Thanks [@ChaseZhang-ai](https://github.com/ChaseZhang-ai)
+  (#24).
+- New rule `secret/perplexity-api-key`: Perplexity API keys (`pplx-`). Thanks
+  [@ChaseZhang-ai](https://github.com/ChaseZhang-ai) (#25).
+- New rule `secret/posthog-api-key`: PostHog personal and project secret API keys (`phx_`, `phs_`). The project token
+  (`phc_`) is public by design and never reported. Thanks [@Aadithya-kl](https://github.com/Aadithya-kl) (#26).
+- `secret/square-access-token` no longer fires inside base64 data. `EAAA` is common in base64 of binary files such as
+  embedded fonts, which raised false errors; Square tokens never contain `+`, `/` or `=`, so those now count as part
+  of the surrounding text. On fonts and images from 31 real apps: 63 false alarms before, 0 after.
+
 ## 0.3.8
 
 - New rule `secret/sentry-auth-token`: Sentry user tokens (`sntryu_`) and organization tokens (`sntrys_`), which
