@@ -41,6 +41,20 @@ Add `--only mattermost,bluewallet` to `download.mjs` or `run.mjs` to limit them 
 - `false-alarm`: the tool misread it, or it is not a real host (placeholder text, a library default).
 - `cant-tell`: it depends on something we cannot see.
 
+## What the maintainers said
+
+Each app with a finding worth raising got a heads-up before the results were published:
+
+- **Rocket.Chat** ([#7941](https://github.com/RocketChat/Rocket.Chat.ReactNative/issues/7941)): plain HTTP allowed to
+  `10.0.2.2` and `localhost` in the release network config. A team member confirmed it: *"because it sits in the
+  `main` source set it ships in release builds … these entries look like a leftover from an old e2e setup. We'll look
+  into moving them out of release."*
+- **Joplin** ([#17199](https://github.com/laurent22/joplin/issues/17199)): test RSA keys in the release bundle. The
+  maintainer said that is by design (tiny test fixtures, only used in dev), so the benchmark counts it as intended,
+  not as a mistake.
+- **Blixt** ([#1516](https://github.com/smolcars/blixt-wallet/issues/1516)): a developer's LAN server hard-coded in
+  production code. No reply yet.
+
 ## Withheld findings
 
 A finding that looks like a live secret is reported privately to the app's maintainers first. Until they have fixed
