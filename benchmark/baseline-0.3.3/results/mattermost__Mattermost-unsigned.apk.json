@@ -1,0 +1,56 @@
+{
+  "tool": "release-lint",
+  "version": "0.3.3",
+  "app": {
+    "file": "mattermost__Mattermost-unsigned.apk",
+    "platform": "android",
+    "appId": "com.mattermost.rnbeta",
+    "version": "2.46.1",
+    "build": "838",
+    "bundle": {
+      "file": "assets/index.android.bundle",
+      "kind": "hermes",
+      "hermesVersion": 96,
+      "approximate": true
+    }
+  },
+  "findings": [
+    {
+      "ruleId": "debug/cleartext-traffic",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed to every host",
+      "evidence": "<base-config cleartextTrafficPermitted=\"true\">",
+      "location": "res/8G.xml",
+      "fix": "Remove cleartextTrafficPermitted from <base-config>, or allow plain HTTP only for the hosts that need it with a <domain-config>."
+    },
+    {
+      "ruleId": "debug/user-ca-trusted",
+      "severity": "warning",
+      "message": "Trusts user-installed CA certificates: anyone who adds one to their phone can read the app's HTTPS traffic",
+      "evidence": "<base-config> trusts <certificates src=\"user\">",
+      "location": "res/8G.xml",
+      "fix": "Move <certificates src=\"user\"/> into <debug-overrides>, which only applies to debuggable builds."
+    },
+    {
+      "ruleId": "debug/cleartext-traffic",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed to every host",
+      "evidence": "android:usesCleartextTraffic=\"true\"",
+      "location": "AndroidManifest.xml",
+      "fix": "Remove usesCleartextTraffic, or allow HTTP only for specific hosts with a network security config."
+    },
+    {
+      "ruleId": "scan/hermes-approximate",
+      "severity": "info",
+      "message": "Unknown Hermes bytecode version 96: strings were extracted approximately",
+      "evidence": "Hermes bytecode v96",
+      "location": "assets/index.android.bundle",
+      "fix": "Please open an issue with your React Native version so this version gets exact support."
+    }
+  ],
+  "summary": {
+    "errors": 0,
+    "warnings": 3,
+    "info": 1
+  }
+}

@@ -1,0 +1,139 @@
+{
+  "tool": "release-lint",
+  "version": "0.3.4",
+  "app": {
+    "file": "element-x__app-gplay-release-signed.aab",
+    "platform": "android",
+    "appId": "io.element.android.x",
+    "version": "26.11.1",
+    "build": "202611010",
+    "bundle": null
+  },
+  "findings": [
+    {
+      "ruleId": "deeplink/non-production-host",
+      "severity": "error",
+      "message": "Release build links to a non-production domain. Points at what looks like a staging or development host",
+      "evidence": "app-link host develop.element.io",
+      "location": "base/manifest/AndroidManifest.xml",
+      "fix": "Release builds must only claim production domains. Check associatedDomains / intentFilters in your app config (often switched by APP_VARIANT or an env var) and the Release entitlements."
+    },
+    {
+      "ruleId": "deeplink/non-production-host",
+      "severity": "error",
+      "message": "Release build links to a non-production domain. Points at what looks like a staging or development host",
+      "evidence": "app-link host staging.element.io",
+      "location": "base/manifest/AndroidManifest.xml",
+      "fix": "Release builds must only claim production domains. Check associatedDomains / intentFilters in your app config (often switched by APP_VARIANT or an env var) and the Release entitlements."
+    },
+    {
+      "ruleId": "debug/user-ca-trusted",
+      "severity": "warning",
+      "message": "Trusts user-installed CA certificates: anyone who adds one to their phone can read the app's HTTPS traffic",
+      "evidence": "<base-config> trusts <certificates src=\"user\">",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Move <certificates src=\"user\"/> into <debug-overrides>, which only applies to debuggable builds."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for 68 hosts, 6 of them local or development hosts",
+      "evidence": "localhost, 127.0.0.1, 10.0.2.2, local, test (+63 more)",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "sourcemap/file",
+      "severity": "warning",
+      "message": "Source map shipped inside the app: it gives away your original source code",
+      "evidence": "base/assets/element-call/assets/IndexedDBWorker-BPz05kYz.js.map",
+      "location": "base/assets/element-call/assets/IndexedDBWorker-BPz05kYz.js.map",
+      "fix": "Keep .map files out of the app and upload them to your crash reporter (Sentry, Bugsnag, …) instead."
+    },
+    {
+      "ruleId": "sourcemap/file",
+      "severity": "warning",
+      "message": "Source map shipped inside the app: it gives away your original source code",
+      "evidence": "base/assets/element-call/assets/_sentry-release-injection-file-B1nSjCN9.js.map",
+      "location": "base/assets/element-call/assets/_sentry-release-injection-file-B1nSjCN9.js.map",
+      "fix": "Keep .map files out of the app and upload them to your crash reporter (Sentry, Bugsnag, …) instead."
+    },
+    {
+      "ruleId": "sourcemap/file",
+      "severity": "warning",
+      "message": "Source map shipped inside the app: it gives away your original source code",
+      "evidence": "base/assets/element-call/assets/index-CqnG6OLe.js.map",
+      "location": "base/assets/element-call/assets/index-CqnG6OLe.js.map",
+      "fix": "Keep .map files out of the app and upload them to your crash reporter (Sentry, Bugsnag, …) instead."
+    },
+    {
+      "ruleId": "sourcemap/file",
+      "severity": "warning",
+      "message": "Source map shipped inside the app: it gives away your original source code",
+      "evidence": "base/assets/element-call/assets/indexeddb-crypto-store-DhcF1r_g.js.map",
+      "location": "base/assets/element-call/assets/indexeddb-crypto-store-DhcF1r_g.js.map",
+      "fix": "Keep .map files out of the app and upload them to your crash reporter (Sentry, Bugsnag, …) instead."
+    },
+    {
+      "ruleId": "sourcemap/file",
+      "severity": "warning",
+      "message": "Source map shipped inside the app: it gives away your original source code",
+      "evidence": "base/assets/element-call/assets/livekit-client.e2ee.worker-DvT-EaAv.js.map",
+      "location": "base/assets/element-call/assets/livekit-client.e2ee.worker-DvT-EaAv.js.map",
+      "fix": "Keep .map files out of the app and upload them to your crash reporter (Sentry, Bugsnag, …) instead."
+    },
+    {
+      "ruleId": "sourcemap/file",
+      "severity": "warning",
+      "message": "Source map shipped inside the app: it gives away your original source code",
+      "evidence": "base/assets/element-call/assets/pako.esm-B8Piutxg.js.map",
+      "location": "base/assets/element-call/assets/pako.esm-B8Piutxg.js.map",
+      "fix": "Keep .map files out of the app and upload them to your crash reporter (Sentry, Bugsnag, …) instead."
+    },
+    {
+      "ruleId": "sourcemap/file",
+      "severity": "warning",
+      "message": "Source map shipped inside the app: it gives away your original source code",
+      "evidence": "base/assets/element-call/assets/polyfill-force-BtKIkyKI.js.map",
+      "location": "base/assets/element-call/assets/polyfill-force-BtKIkyKI.js.map",
+      "fix": "Keep .map files out of the app and upload them to your crash reporter (Sentry, Bugsnag, …) instead."
+    },
+    {
+      "ruleId": "sourcemap/file",
+      "severity": "warning",
+      "message": "Source map shipped inside the app: it gives away your original source code",
+      "evidence": "base/assets/element-call/assets/polyfill-force-wuGPDhjK.js.map",
+      "location": "base/assets/element-call/assets/polyfill-force-wuGPDhjK.js.map",
+      "fix": "Keep .map files out of the app and upload them to your crash reporter (Sentry, Bugsnag, …) instead."
+    },
+    {
+      "ruleId": "sourcemap/file",
+      "severity": "warning",
+      "message": "Source map shipped inside the app: it gives away your original source code",
+      "evidence": "base/assets/element-call/assets/rust-crypto-CyVZvxMT.js.map",
+      "location": "base/assets/element-call/assets/rust-crypto-CyVZvxMT.js.map",
+      "fix": "Keep .map files out of the app and upload them to your crash reporter (Sentry, Bugsnag, …) instead."
+    },
+    {
+      "ruleId": "sourcemap/file",
+      "severity": "warning",
+      "message": "Source map shipped inside the app: it gives away your original source code",
+      "evidence": "base/assets/element-call/assets/rust-crypto-Di7bQ_DS.js.map",
+      "location": "base/assets/element-call/assets/rust-crypto-Di7bQ_DS.js.map",
+      "fix": "Keep .map files out of the app and upload them to your crash reporter (Sentry, Bugsnag, …) instead."
+    },
+    {
+      "ruleId": "sourcemap/file",
+      "severity": "warning",
+      "message": "Source map shipped inside the app: it gives away your original source code",
+      "evidence": "base/assets/element-call/assets/spa-D94mpwQs.js.map",
+      "location": "base/assets/element-call/assets/spa-D94mpwQs.js.map",
+      "fix": "Keep .map files out of the app and upload them to your crash reporter (Sentry, Bugsnag, …) instead."
+    }
+  ],
+  "summary": {
+    "errors": 2,
+    "warnings": 13,
+    "info": 0
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "tool": "release-lint",
+  "version": "0.3.9",
+  "app": {
+    "file": "peach__app-prod-universal-release.apk",
+    "platform": "android",
+    "appId": "com.peachbitcoin.peach.mainnet",
+    "version": "0.69.0",
+    "build": "403",
+    "bundle": {
+      "file": "assets/index.android.bundle",
+      "kind": "hermes",
+      "hermesVersion": 96,
+      "approximate": false
+    }
+  },
+  "findings": [
+    {
+      "ruleId": "host/private-network",
+      "severity": "warning",
+      "message": "Points at a private network address",
+      "evidence": "192.168.0.1:50001",
+      "location": "assets/index.android.bundle",
+      "fix": "Make sure release builds use production URLs (check env-based config such as EXPO_PUBLIC_* or app.config.ts). If this host is intended, add it to allowHosts in release-lint.config.json."
+    },
+    {
+      "ruleId": "host/localhost",
+      "severity": "warning",
+      "message": "Points at localhost: it only works on the developer machine",
+      "evidence": "http://localhost:8545",
+      "location": "assets/index.android.bundle",
+      "fix": "Make sure release builds use production URLs (check env-based config such as EXPO_PUBLIC_* or app.config.ts). If this host is intended, add it to allowHosts in release-lint.config.json."
+    }
+  ],
+  "summary": {
+    "errors": 0,
+    "warnings": 2,
+    "info": 0
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "tool": "release-lint",
+  "version": "0.3.9",
+  "app": {
+    "file": "zeus__zeus-v13.2.5-universal.apk",
+    "platform": "android",
+    "appId": "app.zeusln.zeus",
+    "version": "13.2.5",
+    "build": "139",
+    "bundle": {
+      "file": "assets/index.android.bundle",
+      "kind": "hermes",
+      "hermesVersion": 99,
+      "approximate": false
+    }
+  },
+  "findings": [
+    {
+      "ruleId": "host/localhost",
+      "severity": "warning",
+      "message": "Points at localhost: it only works on the developer machine",
+      "evidence": "http://localhost:3000",
+      "location": "assets/index.android.bundle",
+      "fix": "Make sure release builds use production URLs (check env-based config such as EXPO_PUBLIC_* or app.config.ts). If this host is intended, add it to allowHosts in release-lint.config.json."
+    },
+    {
+      "ruleId": "host/local-only-domain",
+      "severity": "warning",
+      "message": "Points at a local-only domain (.local, .test, .internal, .lan)",
+      "evidence": "https://mempool.mynode.local",
+      "location": "assets/index.android.bundle",
+      "fix": "Make sure release builds use production URLs (check env-based config such as EXPO_PUBLIC_* or app.config.ts). If this host is intended, add it to allowHosts in release-lint.config.json."
+    },
+    {
+      "ruleId": "host/local-only-domain",
+      "severity": "warning",
+      "message": "Points at a local-only domain (.local, .test, .internal, .lan)",
+      "evidence": "https://explorer.mynode.local",
+      "location": "assets/index.android.bundle",
+      "fix": "Make sure release builds use production URLs (check env-based config such as EXPO_PUBLIC_* or app.config.ts). If this host is intended, add it to allowHosts in release-lint.config.json."
+    },
+    {
+      "ruleId": "debug/cleartext-traffic",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed to every host",
+      "evidence": "<base-config cleartextTrafficPermitted=\"true\">",
+      "location": "res/8G.xml",
+      "fix": "Remove cleartextTrafficPermitted from <base-config>, or allow plain HTTP only for the hosts that need it with a <domain-config>."
+    },
+    {
+      "ruleId": "debug/user-ca-trusted",
+      "severity": "warning",
+      "message": "Trusts user-installed CA certificates: anyone who adds one to their phone can read the app's HTTPS traffic",
+      "evidence": "<base-config> trusts <certificates src=\"user\">",
+      "location": "res/8G.xml",
+      "fix": "Move <certificates src=\"user\"/> into <debug-overrides>, which only applies to debuggable builds."
+    }
+  ],
+  "summary": {
+    "errors": 0,
+    "warnings": 5,
+    "info": 0
+  }
+}

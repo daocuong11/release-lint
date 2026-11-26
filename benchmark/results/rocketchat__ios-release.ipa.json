@@ -1,0 +1,32 @@
+{
+  "tool": "release-lint",
+  "version": "0.3.9",
+  "app": {
+    "file": "rocketchat__ios-release.ipa",
+    "platform": "ios",
+    "appId": "chat.rocket.ios",
+    "version": "4.78.1",
+    "build": "110169",
+    "bundle": {
+      "file": "Payload/Rocket.Chat.app/main.jsbundle",
+      "kind": "hermes",
+      "hermesVersion": 98,
+      "approximate": false
+    }
+  },
+  "findings": [
+    {
+      "ruleId": "host/localhost",
+      "severity": "warning",
+      "message": "Points at localhost: it only works on the developer machine",
+      "evidence": "http://localhost:3000",
+      "location": "Payload/Rocket.Chat.app/main.jsbundle",
+      "fix": "Make sure release builds use production URLs (check env-based config such as EXPO_PUBLIC_* or app.config.ts). If this host is intended, add it to allowHosts in release-lint.config.json."
+    }
+  ],
+  "summary": {
+    "errors": 0,
+    "warnings": 1,
+    "info": 0
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "tool": "release-lint",
+  "version": "0.3.9",
+  "app": {
+    "file": "mattermost__Mattermost-unsigned.ipa",
+    "platform": "ios",
+    "appId": "com.mattermost.rnbeta",
+    "version": "2.46.1",
+    "build": "838",
+    "bundle": {
+      "file": "Payload/Mattermost.app/main.jsbundle",
+      "kind": "hermes",
+      "hermesVersion": 96,
+      "approximate": false
+    }
+  },
+  "findings": [
+    {
+      "ruleId": "host/localhost",
+      "severity": "warning",
+      "message": "Points at localhost: it only works on the developer machine",
+      "evidence": "http://localhost:8065",
+      "location": "Payload/Mattermost.app/main.jsbundle",
+      "fix": "Make sure release builds use production URLs (check env-based config such as EXPO_PUBLIC_* or app.config.ts). If this host is intended, add it to allowHosts in release-lint.config.json."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for a development host. Points at localhost: it only works on the developer machine",
+      "evidence": "NSExceptionDomains → localhost: NSExceptionAllowsInsecureHTTPLoads = true",
+      "location": "Payload/Mattermost.app/Info.plist",
+      "fix": "Remove this host from NSAppTransportSecurity → NSExceptionDomains for release builds (in Expo: ios.infoPlist in app.config). App Review asks for a reason for every exception."
+    },
+    {
+      "ruleId": "debug/arbitrary-loads",
+      "severity": "warning",
+      "message": "App Transport Security is turned off for every host",
+      "evidence": "NSAllowsArbitraryLoads = true",
+      "location": "Info.plist",
+      "fix": "Remove NSAllowsArbitraryLoads, or use NSExceptionDomains for the few hosts that need it. App Review asks for a reason."
+    }
+  ],
+  "summary": {
+    "errors": 0,
+    "warnings": 3,
+    "info": 0
+  }
+}

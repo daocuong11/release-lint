@@ -1,0 +1,23 @@
+{
+  "tool": "release-lint",
+  "version": "0.3.9",
+  "app": {
+    "file": "alby-go__alby-go-v2.1.0-android.apk",
+    "platform": "android",
+    "appId": "com.getalby.mobile",
+    "version": "2.1.0",
+    "build": "82",
+    "bundle": {
+      "file": "assets/index.android.bundle",
+      "kind": "hermes",
+      "hermesVersion": 98,
+      "approximate": false
+    }
+  },
+  "findings": [],
+  "summary": {
+    "errors": 0,
+    "warnings": 0,
+    "info": 0
+  }
+}

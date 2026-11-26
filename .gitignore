@@ -2,3 +2,8 @@ node_modules/
 dist/
 coverage/
 .DS_Store
+
+# Benchmark: downloaded app builds and private disclosures are never committed
+benchmark/cache/
+benchmark/PRIVATE-disclosures.md
+benchmark/DRAFTS.md

@@ -1,0 +1,32 @@
+{
+  "tool": "release-lint",
+  "version": "0.3.9",
+  "app": {
+    "file": "jellify__Jellify-1.4.1.ipa",
+    "platform": "ios",
+    "appId": "com.cosmonautical.jellify",
+    "version": "1.4.1",
+    "build": "317",
+    "bundle": {
+      "file": "Payload/Jellify.app/main.jsbundle",
+      "kind": "hermes",
+      "hermesVersion": 99,
+      "approximate": false
+    }
+  },
+  "findings": [
+    {
+      "ruleId": "debug/arbitrary-loads",
+      "severity": "warning",
+      "message": "App Transport Security is turned off for every host",
+      "evidence": "NSAllowsArbitraryLoads = true",
+      "location": "Info.plist",
+      "fix": "Remove NSAllowsArbitraryLoads, or use NSExceptionDomains for the few hosts that need it. App Review asks for a reason."
+    }
+  ],
+  "summary": {
+    "errors": 0,
+    "warnings": 1,
+    "info": 0
+  }
+}

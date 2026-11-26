@@ -1,0 +1,3219 @@
+{
+  "tool": "release-lint",
+  "version": "0.3.3",
+  "app": {
+    "file": "element-x__app-gplay-release-signed.aab",
+    "platform": "android",
+    "appId": "io.element.android.x",
+    "version": "26.11.1",
+    "build": "202611010",
+    "bundle": null
+  },
+  "findings": [
+    {
+      "ruleId": "deeplink/non-production-host",
+      "severity": "error",
+      "message": "Release build links to a non-production domain. Points at what looks like a staging or development host",
+      "evidence": "app-link host develop.element.io",
+      "location": "base/manifest/AndroidManifest.xml",
+      "fix": "Release builds must only claim production domains. Check associatedDomains / intentFilters in your app config (often switched by APP_VARIANT or an env var) and the Release entitlements."
+    },
+    {
+      "ruleId": "deeplink/non-production-host",
+      "severity": "error",
+      "message": "Release build links to a non-production domain. Points at what looks like a staging or development host",
+      "evidence": "app-link host staging.element.io",
+      "location": "base/manifest/AndroidManifest.xml",
+      "fix": "Release builds must only claim production domains. Check associatedDomains / intentFilters in your app config (often switched by APP_VARIANT or an env var) and the Release entitlements."
+    },
+    {
+      "ruleId": "debug/user-ca-trusted",
+      "severity": "warning",
+      "message": "Trusts user-installed CA certificates: anyone who adds one to their phone can read the app's HTTPS traffic",
+      "evidence": "<base-config> trusts <certificates src=\"user\">",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Move <certificates src=\"user\"/> into <debug-overrides>, which only applies to debuggable builds."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for a development host. Points at localhost: it only works on the developer machine",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> localhost",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for a development host. Points at localhost: it only works on the developer machine",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> 127.0.0.1",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for a development host. Points at 10.0.2.2, the Android emulator's alias for the development machine",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> 10.0.2.2",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> onion",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> home.arpa",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for a development host. Points at a local-only domain (.local, .test, .internal, .lan)",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> local",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for a development host. Points at a local-only domain (.local, .test, .internal, .lan)",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> test",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> home",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for a development host. Points at a local-only domain (.local, .test, .internal, .lan)",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> lan",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> localdomain",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> abitabdv.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> abitabev.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> abitabov.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> alpiro.crl.sectigo.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> anticdv.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> antrustovsslg2r30ca.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> autontrustprodvtlsg2r31ca.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> bitcert.crl.sectigo.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> btdvtlsr35g2ca.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> c.cf-b.ssl.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> c.cf-i.ssl.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> c.pki.goog",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> ca1.agid.gov.it",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> cdn.d-trust-cloudcrl.net",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> cdp.disig.sk",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> cdp.elektronicznypodpis.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> cdp.geotrust.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> cdp.rapidssl.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> cdp.thawte.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> cdp1.disig.sk",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> cdp1.pca.dfn.de",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> cdpa.digitalcertvalidation.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> cdpb.digitalcertvalidation.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> cdpc.digitalcertvalidation.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> cdpd.digitalcertvalidation.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> cdpe.digitalcertvalidation.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> cdpf.digitalcertvalidation.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> cdpg.digitalcertvalidation.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> cdph.digitalcertvalidation.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> cdpi.digitalcertvalidation.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> certcloud.crl.trust-provider.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> certdata.crl.sectigo.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> certera.crl.sectigo.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> certificates.godaddy.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> certum-crl.wt.trustasia.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> certum.crl.sheca.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> certumdvtlsg2e39ca.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> certumdvtlsg2r39ca.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> certumevtlsg2e39ca.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> certumevtlsg2r39ca.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> certumovtlsg2e39ca.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> certumovtlsg2r39ca.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> cfcadveccca.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> cfcadvrsaca.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> cfcaeveccca.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> cfcaevrsaca.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> cfcaoveccca.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> cfcaovrsaca.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> cnssldvtlsg2r36ca.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> cnsslovtlsg2r36ca.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl-01.r1.ica.amazontrust.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl-01.r1.ica.amznts.eu",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl-c.emsign.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl-pro.litessl.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.anf.es",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.apple.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.businessid.telesec.de",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.buypass.no",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.catrust.oemssl.cn",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.certigna.fr",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.certsign.ro",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.cfca.com.cn",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.cntrus.oemssl.cn",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.cnwebtrust.oemssl.cn",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.comodoca.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.crlocsp.cn",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.cybertrust.ne.jp",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.d-trust.net",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.dhimyotis.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.digicert.cn",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.digicert.eu",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.e-szigno.hu",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.e2m01.amazontrust.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.e2m01.eu.amazontrust.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.e2m02.amazontrust.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.e2m03.amazontrust.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.e2m04.amazontrust.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.e2s14.amazontrust.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.e2s15.amazontrust.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.e2s16.amazontrust.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.e2s17.amazontrust.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.e2s18.amazontrust.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.e2s19.amazontrust.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.e2s20.amazontrust.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.e2s21.amazontrust.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.e3m01.amazontrust.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.e3m01.eu.amazontrust.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.e3m02.amazontrust.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.e3m03.amazontrust.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.e3m04.amazontrust.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.e3s22.amazontrust.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.e3s23.amazontrust.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.e3s24.amazontrust.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.e3s25.amazontrust.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.e3s26.amazontrust.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.e3s27.amazontrust.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.e3s28.amazontrust.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.e3s29.amazontrust.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.emsign.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.ensuredca.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.firmaprofesional.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.gdca.com.cn",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.global.sheca.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.globalsign.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.globalsign.net",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.godaddy.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.harica.gr",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.izenpe.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.litessl.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.netsolssl.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.oem.trustca.net",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.pcsp.telesec.de",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.pki.goog",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.quovadisglobal.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.r1001.amazontrust.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.r2001.amazontrust.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.r2m01.amazontrust.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.r2m01.eu.amazontrust.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.r2m02.amazontrust.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.r2m03.amazontrust.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.r2m04.amazontrust.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.r2s18.amazontrust.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.r2s19.amazontrust.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.r2s20.amazontrust.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.r2s21.amazontrust.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.r2s22.amazontrust.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.r2s23.amazontrust.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.r2s24.amazontrust.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.r2s25.amazontrust.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.r3001.amazontrust.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.r4001.amazontrust.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.r4m01.amazontrust.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.r4m02.amazontrust.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.r4m03.amazontrust.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.r4m04.amazontrust.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.root-e1.certainly.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.root-r1.certainly.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.rootca1.amazontrust.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.rootca2.amazontrust.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.rootca3.amazontrust.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.rootca4.amazontrust.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.rztrust.oemssl.cn",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.sbca.telesec.de",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.sectigo.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.sectigochina.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.serverid.telesec.de",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.starfieldtech.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.swisssign.ch",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.trust-provider.cn",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.trust-provider.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.tuntrust.tn",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.usertrust.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.wt.trustasia.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.xinchacha.oemssl.cn",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl.zw.oemssl.cn",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl05.actalis.it",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl06.actalis.it",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl09.actalis.it",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl1.ecert.gov.hk",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl13.actalis.it",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl14.actalis.it",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl15.actalis.it",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl2.microsoft.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl3.digicert.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crl4.digicert.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crls.certainly.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> crls.ssl.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> cyberfolks2.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> depo.kamusm.gov.tr",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> digitaltrust.crl.sectigo.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> dnencrypt.crl.sectigo.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> dvtlsca2025-crl.e-szigno.hu",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> dvtlsca2026-crl.e-szigno.hu",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> e5.c.lencr.org",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> e6.c.lencr.org",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> e7.c.lencr.org",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> e8.c.lencr.org",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> ec2ca2017-crl1.e-szigno.hu",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> ec2ca2017-crl2.e-szigno.hu",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> ec2ca2017-crl3.e-szigno.hu",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> ec2sslca2017-crl1.e-szigno.hu",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> ec2sslca2017-crl2.e-szigno.hu",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> ec2sslca2017-crl3.e-szigno.hu",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> ec3ca2017-crl1.e-szigno.hu",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> ec3ca2017-crl2.e-szigno.hu",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> ec3ca2017-crl3.e-szigno.hu",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> ec3sslca2017-crl1.e-szigno.hu",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> ec3sslca2017-crl2.e-szigno.hu",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> ec3sslca2017-crl3.e-szigno.hu",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> eca.hinet.net",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> edvtlsca2023-crl.e-szigno.hu",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> edvtlsca2025-crl.e-szigno.hu",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> edvtlsca2026-crl.e-szigno.hu",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> emudhra.crl.sectigo.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> eosslca2017-crl1.e-szigno.hu",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> eosslca2017-crl2.e-szigno.hu",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> eosslca2017-crl3.e-szigno.hu",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> eovtlsca2023-crl.e-szigno.hu",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> eovtlsca2025-crl.e-szigno.hu",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> eovtlsca2026-crl.e-szigno.hu",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> eqca2017-crl1.e-szigno.hu",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> eqca2017-crl2.e-szigno.hu",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> eqca2017-crl3.e-szigno.hu",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> eqcpca2017-crl1.e-szigno.hu",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> eqcpca2017-crl2.e-szigno.hu",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> eqcpca2017-crl3.e-szigno.hu",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> eqoca2017-crl1.e-szigno.hu",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> eqoca2017-crl2.e-szigno.hu",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> eqoca2017-crl3.e-szigno.hu",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> eqtlsca2018-crl1.e-szigno.hu",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> eqtlsca2018-crl2.e-szigno.hu",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> eqtlsca2018-crl3.e-szigno.hu",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> eqtlsca2023-crl.e-szigno.hu",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> eqtlsca2025-crl.e-szigno.hu",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> eqtlsca2026-crl.e-szigno.hu",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> esafer.crl.sectigo.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> eue2m1.crl.root.amznts.eu",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> eue3m1.crl.root.amznts.eu",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> eur2m1.crl.root.amznts.eu",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> eveccca.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> evrsaca.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> gdcadv.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> gdcaev.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> gdcaov.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> gdcatrustauthdvtlsg3r31ca.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> gdcatrustauthevtlsg3r31ca.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> gdcatrustauthovtlsg3r31ca.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> geant.crl.sectigo.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> genious.crl.sectigo.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> geossldvtlsr34g2ca.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> geosslevtlsr34g2ca.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> geosslovtlsr34g2ca.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> globaltrust.crl.sectigo.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> globessl.crl.sectigo.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> gogetssldv.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> gogetsslev.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> gogetsslov.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> homepldvtlsg2r35ca.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> homepldvtlsg2r36ca.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> homeplovtlsg2r35ca.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> homeplovtlsg2r36ca.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> httpcrl.trust.telia.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> ica.navercloudtrust.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> ica.navercorp.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> issauth.crl.sectigo.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> itrusdv2.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> itrusdvtlsr35g2ca.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> itrusov2.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> itrusovtlsr35g2ca.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> itso.crl.sectigo.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> joyssldvtlsg2r33ca.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> joysslovtlsg2r33ca.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> kingnettechdv.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> kingnettechev.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> kingnettechov.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> kr.crl.digicert.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> lh2.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> namecheap.crl.sectigo.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> nazwassldvtlsg2e29ca.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> nazwassldvtlsg2r29ca.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> netartcadv2.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> netartssldvtlsg2e31ca.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> nijimo.crl.sectigo.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> nyalabscadv.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> nyatworkdv.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> omitsecurity.crl.sectigo.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> onesign.crl.sectigo.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> osslca2016-crl1.e-szigno.hu",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> osslca2016-crl2.e-szigno.hu",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> osslca2016-crl3.e-szigno.hu",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> ovtlsca2025-crl.e-szigno.hu",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> ovtlsca2026-crl.e-szigno.hu",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> pki-crl.atos.net",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> pki.telesec.de",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> pkipro.certsign.ro",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> positiwise.crl.sectigo.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> psw.crl.sectigo.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> public.wisekey.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> qiduodv.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> qtlsca2018-crl1.e-szigno.hu",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> qtlsca2018-crl2.e-szigno.hu",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> qtlsca2018-crl3.e-szigno.hu",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> qtlsca2026-crl.e-szigno.hu",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> r10.c.lencr.org",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> r11.c.lencr.org",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> r12.c.lencr.org",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> r13.c.lencr.org",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> rca.navercloudtrust.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> rca.navercorp.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> repo.pubcert.jprs.jp",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> repo1.secomtrust.net",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> repository.secomtrust.net",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> repository.tls.hinet.net",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> rootca.twca.com.tw",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> rootglobaldv.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> rootnetworksdv2.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> shenzhendv.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> shenzhenev.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> shenzhenov.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> shoperdvtlsg2r34ca.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> shuididv.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> shuidiev.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> shuidiov.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> soomadv.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> ssl2ca2016-crl1.e-szigno.hu",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> ssl2ca2016-crl2.e-szigno.hu",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> ssl2ca2016-crl3.e-szigno.hu",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> sslca2014-crl1.e-szigno.hu",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> sslca2014-crl2.e-szigno.hu",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> sslca2014-crl3.e-szigno.hu",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> sslcom.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> ssllimiteddv.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> sslserver.twca.com.tw",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> subca.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> titrust.crl.sectigo.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> tlcdvtlsr34g2ca.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> tlcevtlsr34g2ca.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> tlcovtlsr34g2ca.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> tlsrootca2025-crl.e-szigno.hu",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> trustasia.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> trustasiadv.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> trustasiadvtlsr35g2ca.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> trustasiaev.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> trustasiaevtlse35g2ca.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> trustasiaevtlsr35g2ca.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> trustasiaov.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> trustasiaovtlse35g2ca.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> trustasiaovtlsr35g2ca.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> trustocean.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> tstlser20.crl.telesec.de",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> tstlsrr23.crl.telesec.de",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> unitedtrustov.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> validation.identrust.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> verokey.crl.sectigo.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> vtrusdvtlsg3r31ca.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> vtrusovtlsg3r31ca.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> webnic.crl.sectigo.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> whitessldvtlsg2e36ca.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> wosign.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> wotrus-dvca.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> wotrus-evca.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> wotrus-ovca.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> wotrus.crl.sectigo.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> wtca-cafiles.itrus.com.cn",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> wtca-crl.itrus.com.cn",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> www.accv.es",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> www.cert.fnmt.es",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> www.d-trust.net",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> www.microsoft.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> x1.c.lencr.org",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> x2.c.lencr.org",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> xcctrustdvtlsg3r31ca.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> xcctrustevtlsg3r31ca.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> xcctrustovtlsg3r31ca.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> xinchacha2dv.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> xinchacha2ov.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> xinchachatrustdvtlsg2r34ca.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> xinchachatrustevtlsg2r34ca.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> xinchachatrustovtlsg2r34ca.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> xinnetdvtlsr34g2ca.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> xinnetevtlsr34g2ca.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> xinnetovtlsr34g2ca.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> ye.c.lencr.org",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> ye1.c.lencr.org",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> ye2.c.lencr.org",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> yektadv.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> yektaov.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> yr.c.lencr.org",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> yr1.c.lencr.org",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> yr2.c.lencr.org",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> zerossl.crl.sectigo.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> ziwit.crl.sectigo.com",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> zycatrustdvtlsg3r31ca.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> zycatrustevtlsg3r31ca.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "debug/cleartext-exception",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed for this host",
+      "evidence": "<domain-config cleartextTrafficPermitted=\"true\"> zycatrustovtlsg3r31ca.crl.certum.pl",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Remove this domain from the network security config, or keep it in a debug-only copy (android/app/src/debug/res/xml/). In Expo, check the config plugin that writes the file."
+    },
+    {
+      "ruleId": "sourcemap/file",
+      "severity": "warning",
+      "message": "Source map shipped inside the app: it gives away your original source code",
+      "evidence": "base/assets/element-call/assets/IndexedDBWorker-BPz05kYz.js.map",
+      "location": "base/assets/element-call/assets/IndexedDBWorker-BPz05kYz.js.map",
+      "fix": "Keep .map files out of the app and upload them to your crash reporter (Sentry, Bugsnag, …) instead."
+    },
+    {
+      "ruleId": "sourcemap/file",
+      "severity": "warning",
+      "message": "Source map shipped inside the app: it gives away your original source code",
+      "evidence": "base/assets/element-call/assets/_sentry-release-injection-file-B1nSjCN9.js.map",
+      "location": "base/assets/element-call/assets/_sentry-release-injection-file-B1nSjCN9.js.map",
+      "fix": "Keep .map files out of the app and upload them to your crash reporter (Sentry, Bugsnag, …) instead."
+    },
+    {
+      "ruleId": "sourcemap/file",
+      "severity": "warning",
+      "message": "Source map shipped inside the app: it gives away your original source code",
+      "evidence": "base/assets/element-call/assets/index-CqnG6OLe.js.map",
+      "location": "base/assets/element-call/assets/index-CqnG6OLe.js.map",
+      "fix": "Keep .map files out of the app and upload them to your crash reporter (Sentry, Bugsnag, …) instead."
+    },
+    {
+      "ruleId": "sourcemap/file",
+      "severity": "warning",
+      "message": "Source map shipped inside the app: it gives away your original source code",
+      "evidence": "base/assets/element-call/assets/indexeddb-crypto-store-DhcF1r_g.js.map",
+      "location": "base/assets/element-call/assets/indexeddb-crypto-store-DhcF1r_g.js.map",
+      "fix": "Keep .map files out of the app and upload them to your crash reporter (Sentry, Bugsnag, …) instead."
+    },
+    {
+      "ruleId": "sourcemap/file",
+      "severity": "warning",
+      "message": "Source map shipped inside the app: it gives away your original source code",
+      "evidence": "base/assets/element-call/assets/livekit-client.e2ee.worker-DvT-EaAv.js.map",
+      "location": "base/assets/element-call/assets/livekit-client.e2ee.worker-DvT-EaAv.js.map",
+      "fix": "Keep .map files out of the app and upload them to your crash reporter (Sentry, Bugsnag, …) instead."
+    },
+    {
+      "ruleId": "sourcemap/file",
+      "severity": "warning",
+      "message": "Source map shipped inside the app: it gives away your original source code",
+      "evidence": "base/assets/element-call/assets/pako.esm-B8Piutxg.js.map",
+      "location": "base/assets/element-call/assets/pako.esm-B8Piutxg.js.map",
+      "fix": "Keep .map files out of the app and upload them to your crash reporter (Sentry, Bugsnag, …) instead."
+    },
+    {
+      "ruleId": "sourcemap/file",
+      "severity": "warning",
+      "message": "Source map shipped inside the app: it gives away your original source code",
+      "evidence": "base/assets/element-call/assets/polyfill-force-BtKIkyKI.js.map",
+      "location": "base/assets/element-call/assets/polyfill-force-BtKIkyKI.js.map",
+      "fix": "Keep .map files out of the app and upload them to your crash reporter (Sentry, Bugsnag, …) instead."
+    },
+    {
+      "ruleId": "sourcemap/file",
+      "severity": "warning",
+      "message": "Source map shipped inside the app: it gives away your original source code",
+      "evidence": "base/assets/element-call/assets/polyfill-force-wuGPDhjK.js.map",
+      "location": "base/assets/element-call/assets/polyfill-force-wuGPDhjK.js.map",
+      "fix": "Keep .map files out of the app and upload them to your crash reporter (Sentry, Bugsnag, …) instead."
+    },
+    {
+      "ruleId": "sourcemap/file",
+      "severity": "warning",
+      "message": "Source map shipped inside the app: it gives away your original source code",
+      "evidence": "base/assets/element-call/assets/rust-crypto-CyVZvxMT.js.map",
+      "location": "base/assets/element-call/assets/rust-crypto-CyVZvxMT.js.map",
+      "fix": "Keep .map files out of the app and upload them to your crash reporter (Sentry, Bugsnag, …) instead."
+    },
+    {
+      "ruleId": "sourcemap/file",
+      "severity": "warning",
+      "message": "Source map shipped inside the app: it gives away your original source code",
+      "evidence": "base/assets/element-call/assets/rust-crypto-Di7bQ_DS.js.map",
+      "location": "base/assets/element-call/assets/rust-crypto-Di7bQ_DS.js.map",
+      "fix": "Keep .map files out of the app and upload them to your crash reporter (Sentry, Bugsnag, …) instead."
+    },
+    {
+      "ruleId": "sourcemap/file",
+      "severity": "warning",
+      "message": "Source map shipped inside the app: it gives away your original source code",
+      "evidence": "base/assets/element-call/assets/spa-D94mpwQs.js.map",
+      "location": "base/assets/element-call/assets/spa-D94mpwQs.js.map",
+      "fix": "Keep .map files out of the app and upload them to your crash reporter (Sentry, Bugsnag, …) instead."
+    }
+  ],
+  "summary": {
+    "errors": 2,
+    "warnings": 398,
+    "info": 0
+  }
+}
