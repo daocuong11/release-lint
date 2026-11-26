@@ -132,6 +132,13 @@ keep in CI logs. Keys that are public by design (Stripe
 `pk_`, Supabase anon keys, Supabase publishable keys (`sb_publishable_`), Sentry DSNs, RevenueCat public SDK keys, Mapbox `pk.` tokens, Square application IDs (`sq0idp-`), PostHog project tokens (`phc_`)) are never reported. Known SDK sandbox hosts (Apple
 receipt validation, PayPal, Plaid, …) are not reported either.
 
+## Tested on real apps
+
+release-lint was run on 39 public release builds of 31 open-source apps (React Native, Expo, Flutter and native
+Android). Every finding was checked against the app's source code with AI assistance, with the reason written down:
+it found 6 real release mistakes, and 77% of findings with a clear answer were read correctly. The run also found
+bugs in release-lint itself, fixed since. Results, method and scripts: [benchmark/](benchmark/).
+
 ## Usage
 
 ```
