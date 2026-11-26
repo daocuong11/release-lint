@@ -71,6 +71,24 @@ describe.each(CASES)('$rule', ({ rule, finds, ignores }) => {
   });
 });
 
+describe('secret/square-access-token', () => {
+  const squareIds = (value: string) => runRules(app([value]), { allowHosts: [] }).filter((f) => f.ruleId === 'secret/square-access-token');
+  const EAAA_TOKEN = 'EA' + 'AA' + 'l'.repeat(60);
+
+  it('reports an EAAA token in code, JSON or a header', () => {
+    for (const value of [`token = "${EAAA_TOKEN}"`, `{"accessToken":"${EAAA_TOKEN}"}`, `Bearer ${EAAA_TOKEN}`, `SQUARE_TOKEN=${EAAA_TOKEN}`]) {
+      expect(squareIds(value)).toHaveLength(1);
+    }
+  });
+
+  it('ignores EAAA inside base64 data, as in an embedded font (bytes 10 00 00 encode as EAAA)', () => {
+    // Shape found in base64 fonts of 17 benchmark apps: a "/" or "+" from the base64 alphabet, EAAA, then more base64.
+    const font = 'data:font/ttf;base64,AAEAAAASAQAABAAgR0RFRrRCsIIAAjWsAAACYk/' + 'EA' + 'AAAAAAAQAAAAbUFhcmpdAD8Rx+AAAAEAAAAAAAAAAAAA==';
+    expect(squareIds(font)).toEqual([]);
+    expect(squareIds('xyz+' + 'EA' + 'AA' + 'b'.repeat(30) + '/abc')).toEqual([]);
+  });
+});
+
 describe('secret/private-key', () => {
   const findings = (value: string) => runRules(app([value]), { allowHosts: [] }).filter((f) => f.ruleId === 'secret/private-key');
 
