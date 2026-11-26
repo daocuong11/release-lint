@@ -1,5 +1,38 @@
 # Changelog
 
+## 0.3.9
+
+- New rule `secret/groq-api-key`: Groq API keys (`gsk_`). Thanks [@ChaseZhang-ai](https://github.com/ChaseZhang-ai)
+  (#24).
+- New rule `secret/perplexity-api-key`: Perplexity API keys (`pplx-`). Thanks
+  [@ChaseZhang-ai](https://github.com/ChaseZhang-ai) (#25).
+- New rule `secret/posthog-api-key`: PostHog personal and project secret API keys (`phx_`, `phs_`). The project token
+  (`phc_`) is public by design and never reported. Thanks [@Aadithya-kl](https://github.com/Aadithya-kl) (#26).
+- `secret/square-access-token` no longer fires inside base64 data. `EAAA` is common in base64 of binary files such as
+  embedded fonts, which raised false errors; Square tokens never contain `+`, `/` or `=`, so those now count as part
+  of the surrounding text. On fonts and images from 31 real apps: 63 false alarms before, 0 after.
+
+## 0.3.8
+
+- New rule `secret/sentry-auth-token`: Sentry user tokens (`sntryu_`) and organization tokens (`sntrys_`), which
+  upload source maps at build time. Sentry DSNs are public by design and never reported. Thanks
+  [@ChaseZhang-ai](https://github.com/ChaseZhang-ai) (#19).
+- New rule `secret/supabase-secret-key`: Supabase secret keys (`sb_secret_`), which bypass every Row Level Security
+  policy. Supabase publishable keys (`sb_publishable_`) are public by design and never reported. Thanks
+  [@ChaseZhang-ai](https://github.com/ChaseZhang-ai) (#20), closing good first issue #18.
+
+## 0.3.7
+
+- New rule `secret/huggingface-token`: Hugging Face access and organization tokens (`hf_`, `api_org_`). Thanks
+  [@ChaseZhang-ai](https://github.com/ChaseZhang-ai) (#15).
+- New rule `secret/square-access-token`: Square access tokens (`sq0atp-`, `EAAA`). Square application IDs (`sq0idp-`)
+  are public by design and never reported. Thanks [@ChaseZhang-ai](https://github.com/ChaseZhang-ai) (#16).
+
+## 0.3.6
+
+- New rule `secret/shopify-token`: Shopify Admin API access tokens and app secrets (`shpat_`, `shpca_`, `shppa_`,
+  `shpss_`) in the bundle or Expo config. Thanks [@shiwng](https://github.com/shiwng) (#12), closing good first issue #4.
+
 ## 0.3.5
 
 - **No more `host/localhost` for axios's built-in `http://localhost`.** axios uses it as the base for parsing

@@ -35,7 +35,16 @@ const CASES: Case[] = [
   { rule: 'secret/supabase-service-role', finds: jwt({ role: 'service_role' }), ignores: jwt({ role: 'anon' }) },
   { rule: 'secret/google-api-key', finds: 'AI' + 'za' + 'a'.repeat(35), ignores: 'AI' + 'za' + 'a'.repeat(10) },
   { rule: 'secret/google-oauth-client-secret', finds: 'GOC' + 'SPX-' + 'a'.repeat(28), ignores: '1234-abc.apps.googleusercontent.com' },
+
   { rule: 'secret/mapbox-secret-token', finds: 'sk' + '.eyJ' + 'a'.repeat(60) + '.' + 'b'.repeat(22), ignores: 'pk' + '.eyJ' + 'a'.repeat(60) + '.' + 'b'.repeat(22) },
+  { rule: 'secret/shopify-token', finds: 'shp' + 'at_' + 'a'.repeat(32), ignores: 'shp' + 'xx_' + 'a'.repeat(32) },
+  { rule: 'secret/huggingface-token', finds: 'hf' + '_' + 'a'.repeat(34), ignores: 'hf' + '_' + 'a'.repeat(10) },
+  { rule: 'secret/square-access-token', finds: 'sq0' + 'atp-' + 'a'.repeat(22), ignores: 'sq0' + 'idp-' + 'a'.repeat(22) },
+  { rule: 'secret/sentry-auth-token', finds: 'sntry' + 'u_' + 'a'.repeat(64), ignores: 'https://' + 'a'.repeat(32) + '@o123.ingest.sentry.io/456' },
+  { rule: 'secret/supabase-secret-key', finds: 'sb_' + 'secret_' + 'a'.repeat(32), ignores: 'sb_' + 'publishable_' + 'a'.repeat(32) },
+  { rule: 'secret/groq-api-key', finds: 'gsk' + '_' + 'a'.repeat(52), ignores: 'gsk' + '_' + 'a'.repeat(20) },
+  { rule: 'secret/perplexity-api-key', finds: 'pplx' + '-' + 'a'.repeat(48), ignores: 'pplx' + '-' + 'a'.repeat(20) },
+  { rule: 'secret/posthog-api-key', finds: 'ph' + 'x_' + 'a'.repeat(43), ignores: 'ph' + 'c_' + 'a'.repeat(43) },
 ];
 
 const app = (strings: string[]): AppModel => ({
@@ -59,6 +68,24 @@ describe.each(CASES)('$rule', ({ rule, finds, ignores }) => {
 
   it('does not report a similar string', () => {
     expect(ruleIds(ignores)).not.toContain(rule);
+  });
+});
+
+describe('secret/square-access-token', () => {
+  const squareIds = (value: string) => runRules(app([value]), { allowHosts: [] }).filter((f) => f.ruleId === 'secret/square-access-token');
+  const EAAA_TOKEN = 'EA' + 'AA' + 'l'.repeat(60);
+
+  it('reports an EAAA token in code, JSON or a header', () => {
+    for (const value of [`token = "${EAAA_TOKEN}"`, `{"accessToken":"${EAAA_TOKEN}"}`, `Bearer ${EAAA_TOKEN}`, `SQUARE_TOKEN=${EAAA_TOKEN}`]) {
+      expect(squareIds(value)).toHaveLength(1);
+    }
+  });
+
+  it('ignores EAAA inside base64 data, as in an embedded font (bytes 10 00 00 encode as EAAA)', () => {
+    // Shape found in base64 fonts of 17 benchmark apps: a "/" or "+" from the base64 alphabet, EAAA, then more base64.
+    const font = 'data:font/ttf;base64,AAEAAAASAQAABAAgR0RFRrRCsIIAAjWsAAACYk/' + 'EA' + 'AAAAAAAQAAAAbUFhcmpdAD8Rx+AAAAEAAAAAAAAAAAAA==';
+    expect(squareIds(font)).toEqual([]);
+    expect(squareIds('xyz+' + 'EA' + 'AA' + 'b'.repeat(30) + '/abc')).toEqual([]);
   });
 });
 

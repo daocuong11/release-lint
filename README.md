@@ -49,6 +49,8 @@ a staging URL slips into the build easily, and the built file is where you can s
 
 ![npx app-release-lint, run with no file in an Expo project, finds the release build and reports a leaked Stripe key, a staging App Link and localhost URLs](docs/demo.gif)
 
+![Code review reads the repo, but users get the build: the build step adds env vars, app.config.ts values, prebuild output and config plugins. release-lint reads the built .aab and reports a Stripe secret key, a preview update channel, a staging App Link and a staging API host, ending with: Do not upload this build.](docs/how-it-works.gif)
+
 ## Start here
 
 | You have | Do this | Time |
@@ -109,7 +111,7 @@ release-lint 0.3.2 · release-lint-demo.aab · Android · com.example.releaselin
 
 | Rule | Severity | What |
 |---|---|---|
-| `secret/*` | error | Stripe secret keys, AWS keys, private keys, OpenAI and Anthropic keys, GitHub and Slack tokens, Slack webhooks, SendGrid keys, Supabase `service_role` keys, Google OAuth client secrets, Mapbox secret tokens, in the JS bundle and the Expo config (`extra`) |
+| `secret/*` | error | Stripe secret keys, AWS keys, private keys, OpenAI and Anthropic keys, GitHub and Slack tokens, Slack webhooks, SendGrid keys, Supabase `service_role` keys, Supabase `sb_secret_` keys, Google OAuth client secrets, Mapbox secret tokens, Shopify tokens, Hugging Face tokens, Square access tokens, Sentry auth tokens, Groq API keys, Perplexity API keys, PostHog personal and project secret keys, in the JS bundle and the Expo config (`extra`) |
 | `secret/stripe-test-secret-key` | warning | A Stripe test secret key |
 | `secret/google-api-key` | info | Google / Firebase API keys: public by design, but should be restricted |
 | `host/*` | warning (error in Expo config) | `localhost`, `10.0.2.2`, private network addresses, ngrok and other tunnels, `.local` / `.test` domains, and staging / dev hosts |
@@ -127,7 +129,7 @@ release-lint 0.3.2 · release-lint-demo.aab · Android · com.example.releaselin
 
 Secrets are masked in every output, and URLs are shown without credentials or query strings, so the report is safe to
 keep in CI logs. Keys that are public by design (Stripe
-`pk_`, Supabase anon keys, Sentry DSNs, RevenueCat public SDK keys, Mapbox `pk.` tokens) are never reported. Known SDK sandbox hosts (Apple
+`pk_`, Supabase anon keys, Supabase publishable keys (`sb_publishable_`), Sentry DSNs, RevenueCat public SDK keys, Mapbox `pk.` tokens, Square application IDs (`sq0idp-`), PostHog project tokens (`phc_`)) are never reported. Known SDK sandbox hosts (Apple
 receipt validation, PayPal, Plaid, …) are not reported either.
 
 ## Usage
@@ -161,6 +163,8 @@ and exits `2`.
     # fail-on: warning               # error (default), warning, info, none
     # config: release-lint.config.json
 ```
+
+![GitHub Actions run: release-lint fails the release build with exit code 1 and lists a leaked Stripe key, a preview update channel, a staging App Link and a staging API host; after the fix the run passes with "No release problems found." and exit code 0.](docs/ci-one-line.gif)
 
 Findings appear as annotations on the run page and as a table in the job summary. The action uses the runner's Node
 (20.19 or newer; add `actions/setup-node` first if yours is older).
