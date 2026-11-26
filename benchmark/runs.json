@@ -7,17 +7,17 @@
       "sha256": "77415e910af621414a5a9c8329010b5231d22a381bab288f2e1466f71155dd16",
       "outcome": "scanned",
       "exitCode": 0,
-      "ms": 150,
+      "ms": 193,
       "summary": {
         "errors": 0,
         "warnings": 0,
         "info": 0
       },
-      "releaseLint": "0.3.5",
-      "commit": "4dc685a459ef046d064d055f33f180e087577be4",
+      "releaseLint": "0.3.9",
+      "commit": "e124c46a3d37be3f5f05ff0184f8fe0cc31f873e",
       "toolSourceModified": false,
       "node": "v26.13.1",
-      "at": "2026-11-25T20:52:50.576Z"
+      "at": "2026-11-26T18:18:46.606Z"
     },
     "bitwarden__com.x8bit.bitwarden.apk": {
       "app": "bitwarden",
@@ -26,17 +26,17 @@
       "sha256": "ef7ecda031fbaf8a066ad61b5f33ad346bf9a22d18b51b4b09cb54e5cac28715",
       "outcome": "scanned",
       "exitCode": 0,
-      "ms": 41,
+      "ms": 50,
       "summary": {
         "errors": 0,
         "warnings": 1,
         "info": 0
       },
-      "releaseLint": "0.3.5",
-      "commit": "4dc685a459ef046d064d055f33f180e087577be4",
+      "releaseLint": "0.3.9",
+      "commit": "e124c46a3d37be3f5f05ff0184f8fe0cc31f873e",
       "toolSourceModified": false,
       "node": "v26.13.1",
-      "at": "2026-11-25T20:52:54.498Z"
+      "at": "2026-11-26T18:18:51.732Z"
     },
     "blixt-mainnet__blixt-wallet-mainnet-0.9.0.apk": {
       "app": "blixt-mainnet",
@@ -45,17 +45,17 @@
       "sha256": "2d2a5098f821acd1b7402aaf0aef661fd9d7287c251053d2ac193dcb4fb4ca52",
       "outcome": "scanned",
       "exitCode": 0,
-      "ms": 213,
+      "ms": 305,
       "summary": {
         "errors": 0,
         "warnings": 6,
         "info": 0
       },
-      "releaseLint": "0.3.5",
-      "commit": "4dc685a459ef046d064d055f33f180e087577be4",
+      "releaseLint": "0.3.9",
+      "commit": "e124c46a3d37be3f5f05ff0184f8fe0cc31f873e",
       "toolSourceModified": false,
       "node": "v26.13.1",
-      "at": "2026-11-25T20:52:49.766Z"
+      "at": "2026-11-26T18:18:45.610Z"
     },
     "blixt-testnet__blixt-wallet-testnet-0.9.0.apk": {
       "app": "blixt-testnet",
@@ -64,17 +64,17 @@
       "sha256": "d634b8d5b9f2d976cd925aa3b38f888a06c3941c74ebf3575430396739621a80",
       "outcome": "scanned",
       "exitCode": 0,
-      "ms": 244,
+      "ms": 307,
       "summary": {
         "errors": 0,
         "warnings": 6,
         "info": 0
       },
-      "releaseLint": "0.3.5",
-      "commit": "4dc685a459ef046d064d055f33f180e087577be4",
+      "releaseLint": "0.3.9",
+      "commit": "e124c46a3d37be3f5f05ff0184f8fe0cc31f873e",
       "toolSourceModified": false,
       "node": "v26.13.1",
-      "at": "2026-11-25T20:52:50.078Z"
+      "at": "2026-11-26T18:18:45.972Z"
     },
     "bluewallet__BlueWallet-8.0.2.apk": {
       "app": "bluewallet",
@@ -83,17 +83,17 @@
       "sha256": "d411e0c58e325d2bc057506007ebe7052743bfc7dcdaa94af4ace0bb18434454",
       "outcome": "scanned",
       "exitCode": 0,
-      "ms": 544,
+      "ms": 658,
       "summary": {
         "errors": 0,
         "warnings": 3,
         "info": 0
       },
-      "releaseLint": "0.3.5",
-      "commit": "4dc685a459ef046d064d055f33f180e087577be4",
+      "releaseLint": "0.3.9",
+      "commit": "e124c46a3d37be3f5f05ff0184f8fe0cc31f873e",
       "toolSourceModified": false,
       "node": "v26.13.1",
-      "at": "2026-11-25T20:52:48.900Z"
+      "at": "2026-11-26T18:18:44.456Z"
     },
     "chatterui__ChatterUI_v0.10.1.apk": {
       "app": "chatterui",
@@ -102,17 +102,17 @@
       "sha256": "ec051d90bc9f82587a726b525976494bacef50bc8a7dd0e3789b859373121753",
       "outcome": "scanned",
       "exitCode": 0,
-      "ms": 128,
+      "ms": 162,
       "summary": {
         "errors": 0,
         "warnings": 3,
         "info": 0
       },
-      "releaseLint": "0.3.5",
-      "commit": "4dc685a459ef046d064d055f33f180e087577be4",
+      "releaseLint": "0.3.9",
+      "commit": "e124c46a3d37be3f5f05ff0184f8fe0cc31f873e",
       "toolSourceModified": false,
       "node": "v26.13.1",
-      "at": "2026-11-25T20:52:51.677Z"
+      "at": "2026-11-26T18:18:48.040Z"
     },
     "cherry-studio__cherry-studio-0.6.2-android.apk": {
       "app": "cherry-studio",
@@ -121,17 +121,17 @@
       "sha256": "22d63880e4963ce33c2df8973b0d6f1eb55435e585d228a4fb0a7f0f4da10287",
       "outcome": "scanned",
       "exitCode": 0,
-      "ms": 421,
+      "ms": 608,
       "summary": {
         "errors": 0,
         "warnings": 7,
         "info": 0
       },
-      "releaseLint": "0.3.5",
-      "commit": "4dc685a459ef046d064d055f33f180e087577be4",
+      "releaseLint": "0.3.9",
+      "commit": "e124c46a3d37be3f5f05ff0184f8fe0cc31f873e",
       "toolSourceModified": false,
       "node": "v26.13.1",
-      "at": "2026-11-25T20:52:52.151Z"
+      "at": "2026-11-26T18:18:48.700Z"
     },
     "edge__Edge.4.53.0.apk": {
       "app": "edge",
@@ -140,17 +140,17 @@
       "sha256": "b30b21ac4c01db26f2639c26beb5f97ba947d35034c00502772d8b0b3c5519aa",
       "outcome": "scanned",
       "exitCode": 0,
-      "ms": 225,
+      "ms": 321,
       "summary": {
         "errors": 0,
         "warnings": 8,
         "info": 0
       },
-      "releaseLint": "0.3.5",
-      "commit": "4dc685a459ef046d064d055f33f180e087577be4",
+      "releaseLint": "0.3.9",
+      "commit": "01fb27a4dc9219199e2509724568dd98ff9c9b40",
       "toolSourceModified": false,
       "node": "v26.13.1",
-      "at": "2026-11-25T20:52:49.179Z"
+      "at": "2026-11-26T19:12:29.499Z"
     },
     "element-x__app-gplay-release-signed.aab": {
       "app": "element-x",
@@ -159,17 +159,17 @@
       "sha256": "578ad59c4dd8f1d9e9606ead115a343d5e951ba3337f28cb8a42d36fb93b147b",
       "outcome": "scanned",
       "exitCode": 0,
-      "ms": 36,
+      "ms": 38,
       "summary": {
         "errors": 2,
         "warnings": 13,
         "info": 0
       },
-      "releaseLint": "0.3.5",
-      "commit": "4dc685a459ef046d064d055f33f180e087577be4",
+      "releaseLint": "0.3.9",
+      "commit": "e124c46a3d37be3f5f05ff0184f8fe0cc31f873e",
       "toolSourceModified": false,
       "node": "v26.13.1",
-      "at": "2026-11-25T20:52:54.729Z"
+      "at": "2026-11-26T18:18:51.989Z"
     },
     "fintunes__fintunes-v2.4.6.aab": {
       "app": "fintunes",
@@ -178,17 +178,17 @@
       "sha256": "32e8f75f28c34e889b32ce5d49cd626adce793602cec5909df70567c2fd8a8a8",
       "outcome": "scanned",
       "exitCode": 0,
-      "ms": 118,
+      "ms": 160,
       "summary": {
         "errors": 0,
         "warnings": 2,
         "info": 0
       },
-      "releaseLint": "0.3.5",
-      "commit": "4dc685a459ef046d064d055f33f180e087577be4",
+      "releaseLint": "0.3.9",
+      "commit": "e124c46a3d37be3f5f05ff0184f8fe0cc31f873e",
       "toolSourceModified": false,
       "node": "v26.13.1",
-      "at": "2026-11-25T20:52:52.965Z"
+      "at": "2026-11-26T18:18:49.712Z"
     },
     "fintunes__fintunes-v2.4.6.apk": {
       "app": "fintunes",
@@ -197,17 +197,17 @@
       "sha256": "60f878f4d705dd97f26950b82069e6ccc54794cfe4ef28b26eb6eedf8864426f",
       "outcome": "scanned",
       "exitCode": 0,
-      "ms": 120,
+      "ms": 149,
       "summary": {
         "errors": 0,
         "warnings": 2,
         "info": 0
       },
-      "releaseLint": "0.3.5",
-      "commit": "4dc685a459ef046d064d055f33f180e087577be4",
+      "releaseLint": "0.3.9",
+      "commit": "e124c46a3d37be3f5f05ff0184f8fe0cc31f873e",
       "toolSourceModified": false,
       "node": "v26.13.1",
-      "at": "2026-11-25T20:52:52.798Z"
+      "at": "2026-11-26T18:18:49.494Z"
     },
     "graysky__application-ab5c5de7-2174-4f5a-a84d-25eb57df7ca2.apk": {
       "app": "graysky",
@@ -216,17 +216,17 @@
       "sha256": "fe8f60d4bc5ff2fdf982ffc0dad2cabe93d4d9ff89f1401ca2b2526e652eedd8",
       "outcome": "scanned",
       "exitCode": 0,
-      "ms": 203,
+      "ms": 303,
       "summary": {
         "errors": 0,
         "warnings": 0,
         "info": 0
       },
-      "releaseLint": "0.3.5",
-      "commit": "4dc685a459ef046d064d055f33f180e087577be4",
+      "releaseLint": "0.3.9",
+      "commit": "e124c46a3d37be3f5f05ff0184f8fe0cc31f873e",
       "toolSourceModified": false,
       "node": "v26.13.1",
-      "at": "2026-11-25T20:52:53.473Z"
+      "at": "2026-11-26T18:18:50.386Z"
     },
     "home-assistant__app-full-release.apk": {
       "app": "home-assistant",
@@ -235,17 +235,17 @@
       "sha256": "9c11abaf9e1b832894c49d806f66769ed76f99bac26cd1da029e2a9df227e41f",
       "outcome": "scanned",
       "exitCode": 0,
-      "ms": 86,
+      "ms": 136,
       "summary": {
         "errors": 0,
         "warnings": 2,
         "info": 0
       },
-      "releaseLint": "0.3.5",
-      "commit": "4dc685a459ef046d064d055f33f180e087577be4",
+      "releaseLint": "0.3.9",
+      "commit": "e124c46a3d37be3f5f05ff0184f8fe0cc31f873e",
       "toolSourceModified": false,
       "node": "v26.13.1",
-      "at": "2026-11-25T20:52:54.390Z"
+      "at": "2026-11-26T18:18:51.597Z"
     },
     "immich__app-release.apk": {
       "app": "immich",
@@ -254,17 +254,17 @@
       "sha256": "bd1078a1c92339f693bf0afc19669bc572bb96f646d9107e806c9d34f2df7017",
       "outcome": "scanned",
       "exitCode": 0,
-      "ms": 69,
+      "ms": 71,
       "summary": {
         "errors": 0,
         "warnings": 2,
         "info": 0
       },
-      "releaseLint": "0.3.5",
-      "commit": "4dc685a459ef046d064d055f33f180e087577be4",
+      "releaseLint": "0.3.9",
+      "commit": "e124c46a3d37be3f5f05ff0184f8fe0cc31f873e",
       "toolSourceModified": false,
       "node": "v26.13.1",
-      "at": "2026-11-25T20:52:54.051Z"
+      "at": "2026-11-26T18:18:51.147Z"
     },
     "jellify__Jellify-1.4.1-app-universal-release.apk": {
       "app": "jellify",
@@ -273,17 +273,17 @@
       "sha256": "5477c131708725058aa85e2e9dcf2ba9f402a22234e288462f8e734451c8f9ef",
       "outcome": "scanned",
       "exitCode": 0,
-      "ms": 161,
+      "ms": 214,
       "summary": {
         "errors": 0,
         "warnings": 1,
         "info": 0
       },
-      "releaseLint": "0.3.5",
-      "commit": "4dc685a459ef046d064d055f33f180e087577be4",
+      "releaseLint": "0.3.9",
+      "commit": "e124c46a3d37be3f5f05ff0184f8fe0cc31f873e",
       "toolSourceModified": false,
       "node": "v26.13.1",
-      "at": "2026-11-25T20:53:17.184Z"
+      "at": "2026-11-26T18:18:42.912Z"
     },
     "jellify__Jellify-1.4.1.ipa": {
       "app": "jellify",
@@ -292,17 +292,17 @@
       "sha256": "73eeda8dde7c75f5a648039e5f7cc089cfc26fad2aa2eedd634284317cdbe0b3",
       "outcome": "scanned",
       "exitCode": 0,
-      "ms": 182,
+      "ms": 230,
       "summary": {
         "errors": 0,
         "warnings": 1,
         "info": 0
       },
-      "releaseLint": "0.3.5",
-      "commit": "4dc685a459ef046d064d055f33f180e087577be4",
+      "releaseLint": "0.3.9",
+      "commit": "e124c46a3d37be3f5f05ff0184f8fe0cc31f873e",
       "toolSourceModified": false,
       "node": "v26.13.1",
-      "at": "2026-11-25T20:53:17.386Z"
+      "at": "2026-11-26T18:18:43.161Z"
     },
     "joplin__joplin-v3.7.12.apk": {
       "app": "joplin",
@@ -311,17 +311,17 @@
       "sha256": "f5cf596d7ffc62b61c7c98d2f2149e3624f4fd283b09e9acb0cca210745ced79",
       "outcome": "scanned",
       "exitCode": 0,
-      "ms": 370,
+      "ms": 505,
       "summary": {
         "errors": 5,
         "warnings": 7,
         "info": 0
       },
-      "releaseLint": "0.3.5",
-      "commit": "4dc685a459ef046d064d055f33f180e087577be4",
+      "releaseLint": "0.3.9",
+      "commit": "e124c46a3d37be3f5f05ff0184f8fe0cc31f873e",
       "toolSourceModified": false,
       "node": "v26.13.1",
-      "at": "2026-11-25T20:52:48.321Z"
+      "at": "2026-11-26T18:18:43.764Z"
     },
     "lichess__3108.apk": {
       "app": "lichess",
@@ -330,17 +330,17 @@
       "sha256": "4273b64e9200842737397f4708348e103af4f5a612b63ec5e225af241f58e0cb",
       "outcome": "scanned",
       "exitCode": 0,
-      "ms": 37,
+      "ms": 38,
       "summary": {
         "errors": 0,
         "warnings": 0,
         "info": 0
       },
-      "releaseLint": "0.3.5",
-      "commit": "4dc685a459ef046d064d055f33f180e087577be4",
+      "releaseLint": "0.3.9",
+      "commit": "e124c46a3d37be3f5f05ff0184f8fe0cc31f873e",
       "toolSourceModified": false,
       "node": "v26.13.1",
-      "at": "2026-11-25T20:52:54.281Z"
+      "at": "2026-11-26T18:18:51.406Z"
     },
     "lnreader__LNReader-v2.1.4-universal.apk": {
       "app": "lnreader",
@@ -349,17 +349,17 @@
       "sha256": "0618c21dd7593aada0e046f2d71df0615f418cd94f15b3add95a1ea81fbf19e0",
       "outcome": "scanned",
       "exitCode": 0,
-      "ms": 211,
+      "ms": 311,
       "summary": {
         "errors": 0,
         "warnings": 1,
         "info": 0
       },
-      "releaseLint": "0.3.5",
-      "commit": "4dc685a459ef046d064d055f33f180e087577be4",
+      "releaseLint": "0.3.9",
+      "commit": "e124c46a3d37be3f5f05ff0184f8fe0cc31f873e",
       "toolSourceModified": false,
       "node": "v26.13.1",
-      "at": "2026-11-25T20:52:52.418Z"
+      "at": "2026-11-26T18:18:49.068Z"
     },
     "localsend__LocalSend-1.19.0-android-arm64v8.apk": {
       "app": "localsend",
@@ -368,17 +368,17 @@
       "sha256": "bdc69f794ef493dbcf437f2ba8d959ece1712eff50f3f6274970f11c5bdb1bce",
       "outcome": "scanned",
       "exitCode": 0,
-      "ms": 38,
+      "ms": 40,
       "summary": {
         "errors": 0,
         "warnings": 1,
         "info": 0
       },
-      "releaseLint": "0.3.5",
-      "commit": "4dc685a459ef046d064d055f33f180e087577be4",
+      "releaseLint": "0.3.9",
+      "commit": "e124c46a3d37be3f5f05ff0184f8fe0cc31f873e",
       "toolSourceModified": false,
       "node": "v26.13.1",
-      "at": "2026-11-25T20:52:54.110Z"
+      "at": "2026-11-26T18:18:51.212Z"
     },
     "mastodon__mastodon-githubRelease.apk": {
       "app": "mastodon",
@@ -387,17 +387,17 @@
       "sha256": "72077e077a1b7d29bd45ceef77d6a2d39ddec501138deb61b2ebf7c471db2193",
       "outcome": "scanned",
       "exitCode": 0,
-      "ms": 49,
+      "ms": 51,
       "summary": {
         "errors": 0,
         "warnings": 1,
         "info": 0
       },
-      "releaseLint": "0.3.5",
-      "commit": "4dc685a459ef046d064d055f33f180e087577be4",
+      "releaseLint": "0.3.9",
+      "commit": "e124c46a3d37be3f5f05ff0184f8fe0cc31f873e",
       "toolSourceModified": false,
       "node": "v26.13.1",
-      "at": "2026-11-25T20:52:54.550Z"
+      "at": "2026-11-26T18:18:51.786Z"
     },
     "mattermost__Mattermost-unsigned.apk": {
       "app": "mattermost",
@@ -406,17 +406,17 @@
       "sha256": "d44a860437780b58a17dc2a08970bbd8c99789ee6d71dbe72f98dfe5b5acabad",
       "outcome": "scanned",
       "exitCode": 0,
-      "ms": 530,
+      "ms": 755,
       "summary": {
         "errors": 0,
         "warnings": 3,
         "info": 0
       },
-      "releaseLint": "0.3.5",
-      "commit": "4dc685a459ef046d064d055f33f180e087577be4",
+      "releaseLint": "0.3.9",
+      "commit": "e124c46a3d37be3f5f05ff0184f8fe0cc31f873e",
       "toolSourceModified": false,
       "node": "v26.13.1",
-      "at": "2026-11-25T20:52:43.960Z"
+      "at": "2026-11-26T18:18:37.994Z"
     },
     "mattermost__Mattermost-unsigned.ipa": {
       "app": "mattermost",
@@ -425,17 +425,17 @@
       "sha256": "9d0ba1143c2b6e4b3aa129d78f0bee054ce8a3d0ceb273daabf1b411fbe74045",
       "outcome": "scanned",
       "exitCode": 0,
-      "ms": 612,
+      "ms": 829,
       "summary": {
         "errors": 0,
         "warnings": 3,
         "info": 0
       },
-      "releaseLint": "0.3.5",
-      "commit": "4dc685a459ef046d064d055f33f180e087577be4",
+      "releaseLint": "0.3.9",
+      "commit": "e124c46a3d37be3f5f05ff0184f8fe0cc31f873e",
       "toolSourceModified": false,
       "node": "v26.13.1",
-      "at": "2026-11-25T20:52:44.594Z"
+      "at": "2026-11-26T18:18:38.847Z"
     },
     "minibits__app-universal-release.apk": {
       "app": "minibits",
@@ -444,17 +444,17 @@
       "sha256": "9eff5de790bc7b371ed29d2788bb150735018a7f0cbe58a1328d67eb59d84828",
       "outcome": "scanned",
       "exitCode": 0,
-      "ms": 201,
+      "ms": 260,
       "summary": {
         "errors": 0,
         "warnings": 1,
         "info": 0
       },
-      "releaseLint": "0.3.5",
-      "commit": "4dc685a459ef046d064d055f33f180e087577be4",
+      "releaseLint": "0.3.9",
+      "commit": "e124c46a3d37be3f5f05ff0184f8fe0cc31f873e",
       "toolSourceModified": false,
       "node": "v26.13.1",
-      "at": "2026-11-25T20:52:50.348Z"
+      "at": "2026-11-26T18:18:46.300Z"
     },
     "musicfree__app-universal-release.apk": {
       "app": "musicfree",
@@ -463,17 +463,17 @@
       "sha256": "bac055b963fe882b19ccbc81e434054395b254dc234fe9b74b2ec30b3405c797",
       "outcome": "scanned",
       "exitCode": 0,
-      "ms": 129,
+      "ms": 169,
       "summary": {
         "errors": 0,
         "warnings": 1,
         "info": 0
       },
-      "releaseLint": "0.3.5",
-      "commit": "4dc685a459ef046d064d055f33f180e087577be4",
+      "releaseLint": "0.3.9",
+      "commit": "e124c46a3d37be3f5f05ff0184f8fe0cc31f873e",
       "toolSourceModified": false,
       "node": "v26.13.1",
-      "at": "2026-11-25T20:52:53.108Z"
+      "at": "2026-11-26T18:18:49.897Z"
     },
     "nostros__nostros-v0.3.3.3-beta-universal.apk": {
       "app": "nostros",
@@ -482,17 +482,17 @@
       "sha256": "9457b390abab3f356a3ed830bedc84cbd873ee2b803b94c7ae8f0f710edf97e8",
       "outcome": "scanned",
       "exitCode": 0,
-      "ms": 161,
+      "ms": 227,
       "summary": {
         "errors": 0,
         "warnings": 1,
         "info": 0
       },
-      "releaseLint": "0.3.5",
-      "commit": "4dc685a459ef046d064d055f33f180e087577be4",
+      "releaseLint": "0.3.9",
+      "commit": "e124c46a3d37be3f5f05ff0184f8fe0cc31f873e",
       "toolSourceModified": false,
       "node": "v26.13.1",
-      "at": "2026-11-25T20:52:53.649Z"
+      "at": "2026-11-26T18:18:50.628Z"
     },
     "peach__app-prod-universal-release.apk": {
       "app": "peach",
@@ -501,17 +501,17 @@
       "sha256": "a635b04d7cc5a4a33c4ca06a693448f7f06fdc395e7ed670430c1ac85e75c1cb",
       "outcome": "scanned",
       "exitCode": 0,
-      "ms": 240,
+      "ms": 331,
       "summary": {
         "errors": 0,
         "warnings": 2,
         "info": 0
       },
-      "releaseLint": "0.3.5",
-      "commit": "4dc685a459ef046d064d055f33f180e087577be4",
+      "releaseLint": "0.3.9",
+      "commit": "e124c46a3d37be3f5f05ff0184f8fe0cc31f873e",
       "toolSourceModified": false,
       "node": "v26.13.1",
-      "at": "2026-11-25T20:52:49.501Z"
+      "at": "2026-11-26T18:18:45.246Z"
     },
     "pixelfed__app-release.apk": {
       "app": "pixelfed",
@@ -520,17 +520,17 @@
       "sha256": "616e080d0cc8e0f0881893f84032e58e7d67de6f0dcfbc3b94afd6c6aa5653bf",
       "outcome": "scanned",
       "exitCode": 0,
-      "ms": 128,
+      "ms": 162,
       "summary": {
         "errors": 0,
         "warnings": 0,
         "info": 0
       },
-      "releaseLint": "0.3.5",
-      "commit": "4dc685a459ef046d064d055f33f180e087577be4",
+      "releaseLint": "0.3.9",
+      "commit": "e124c46a3d37be3f5f05ff0184f8fe0cc31f873e",
       "toolSourceModified": false,
       "node": "v26.13.1",
-      "at": "2026-11-25T20:52:52.608Z"
+      "at": "2026-11-26T18:18:49.286Z"
     },
     "pocketpal__app-prod-release.apk": {
       "app": "pocketpal",
@@ -539,17 +539,17 @@
       "sha256": "027cbc808b1c0fa85ba954426ca06119bf2f8adb12a76b52d4f882517c58ed9c",
       "outcome": "scanned",
       "exitCode": 0,
-      "ms": 755,
+      "ms": 1066,
       "summary": {
         "errors": 0,
         "warnings": 3,
         "info": 0
       },
-      "releaseLint": "0.3.5",
-      "commit": "4dc685a459ef046d064d055f33f180e087577be4",
+      "releaseLint": "0.3.9",
+      "commit": "e124c46a3d37be3f5f05ff0184f8fe0cc31f873e",
       "toolSourceModified": false,
       "node": "v26.13.1",
-      "at": "2026-11-25T20:52:51.520Z"
+      "at": "2026-11-26T18:18:47.848Z"
     },
     "rocketchat__android-release.apk": {
       "app": "rocketchat",
@@ -558,17 +558,17 @@
       "sha256": "46b176f3e8acdeb9fba1e7306bb16e2c9c4230e1472f8426b66e9edcad726681",
       "outcome": "scanned",
       "exitCode": 0,
-      "ms": 302,
+      "ms": 433,
       "summary": {
         "errors": 0,
         "warnings": 4,
         "info": 0
       },
-      "releaseLint": "0.3.5",
-      "commit": "4dc685a459ef046d064d055f33f180e087577be4",
+      "releaseLint": "0.3.9",
+      "commit": "e124c46a3d37be3f5f05ff0184f8fe0cc31f873e",
       "toolSourceModified": false,
       "node": "v26.13.1",
-      "at": "2026-11-25T20:52:44.990Z"
+      "at": "2026-11-26T18:18:39.371Z"
     },
     "rocketchat__ios-release.ipa": {
       "app": "rocketchat",
@@ -577,17 +577,17 @@
       "sha256": "ff908b061a5dd8b57e652941dd2496dd3a4fc724cc9df74e88e4357e12d7e20f",
       "outcome": "scanned",
       "exitCode": 0,
-      "ms": 368,
+      "ms": 492,
       "summary": {
         "errors": 0,
         "warnings": 1,
         "info": 0
       },
-      "releaseLint": "0.3.5",
-      "commit": "4dc685a459ef046d064d055f33f180e087577be4",
+      "releaseLint": "0.3.9",
+      "commit": "e124c46a3d37be3f5f05ff0184f8fe0cc31f873e",
       "toolSourceModified": false,
       "node": "v26.13.1",
-      "at": "2026-11-25T20:52:45.395Z"
+      "at": "2026-11-26T18:18:39.902Z"
     },
     "streamyfin__streamyfin-android-phone-apk.apk": {
       "app": "streamyfin",
@@ -596,17 +596,17 @@
       "sha256": "59c60176e5523f96085fdfc0ecaf360f867f2a37bb4dadbc9d7525d8ce26ebde",
       "outcome": "scanned",
       "exitCode": 0,
-      "ms": 281,
+      "ms": 363,
       "summary": {
         "errors": 0,
         "warnings": 3,
         "info": 0
       },
-      "releaseLint": "0.3.5",
-      "commit": "4dc685a459ef046d064d055f33f180e087577be4",
+      "releaseLint": "0.3.9",
+      "commit": "e124c46a3d37be3f5f05ff0184f8fe0cc31f873e",
       "toolSourceModified": false,
       "node": "v26.13.1",
-      "at": "2026-11-25T20:52:46.691Z"
+      "at": "2026-11-26T18:18:41.722Z"
     },
     "streamyfin__streamyfin-android.aab": {
       "app": "streamyfin",
@@ -615,17 +615,17 @@
       "sha256": "c36397afcd79643674023440db84d20e15aeaebcfaa0899530e6e79f85201adb",
       "outcome": "scanned",
       "exitCode": 0,
-      "ms": 457,
+      "ms": 381,
       "summary": {
         "errors": 0,
         "warnings": 3,
         "info": 0
       },
-      "releaseLint": "0.3.5",
-      "commit": "4dc685a459ef046d064d055f33f180e087577be4",
+      "releaseLint": "0.3.9",
+      "commit": "e124c46a3d37be3f5f05ff0184f8fe0cc31f873e",
       "toolSourceModified": false,
       "node": "v26.13.1",
-      "at": "2026-11-25T20:52:47.208Z"
+      "at": "2026-11-26T18:18:42.163Z"
     },
     "streamyfin__streamyfin-ios.ipa": {
       "app": "streamyfin",
@@ -634,17 +634,17 @@
       "sha256": "94db7d9bbfe655674ce9f48d429d4dd47a2b83061aa98bd829edb9ef1c737ea1",
       "outcome": "scanned",
       "exitCode": 0,
-      "ms": 351,
+      "ms": 426,
       "summary": {
         "errors": 0,
         "warnings": 3,
         "info": 0
       },
-      "releaseLint": "0.3.5",
-      "commit": "4dc685a459ef046d064d055f33f180e087577be4",
+      "releaseLint": "0.3.9",
+      "commit": "e124c46a3d37be3f5f05ff0184f8fe0cc31f873e",
       "toolSourceModified": false,
       "node": "v26.13.1",
-      "at": "2026-11-25T20:52:47.593Z"
+      "at": "2026-11-26T18:18:42.626Z"
     },
     "thunderbird__k9mail-25.0.apk": {
       "app": "thunderbird",
@@ -653,17 +653,17 @@
       "sha256": "b585b59b6b1f53f23cef5eab33ef80d1d5bd3581fa8e78acc064c33a23ec8df9",
       "outcome": "scanned",
       "exitCode": 0,
-      "ms": 53,
+      "ms": 60,
       "summary": {
         "errors": 0,
         "warnings": 3,
         "info": 0
       },
-      "releaseLint": "0.3.5",
-      "commit": "4dc685a459ef046d064d055f33f180e087577be4",
+      "releaseLint": "0.3.9",
+      "commit": "e124c46a3d37be3f5f05ff0184f8fe0cc31f873e",
       "toolSourceModified": false,
       "node": "v26.13.1",
-      "at": "2026-11-25T20:52:54.609Z"
+      "at": "2026-11-26T18:18:51.851Z"
     },
     "tooot__tooot-v4.10.3.apk": {
       "app": "tooot",
@@ -672,17 +672,17 @@
       "sha256": "e981ec1db1e5e49a701eb8bd7dd450f2be3cdf0e1878d377759fd27bdfacd19a",
       "outcome": "scanned",
       "exitCode": 0,
-      "ms": 225,
+      "ms": 314,
       "summary": {
         "errors": 0,
         "warnings": 0,
         "info": 0
       },
-      "releaseLint": "0.3.5",
-      "commit": "4dc685a459ef046d064d055f33f180e087577be4",
+      "releaseLint": "0.3.9",
+      "commit": "e124c46a3d37be3f5f05ff0184f8fe0cc31f873e",
       "toolSourceModified": false,
       "node": "v26.13.1",
-      "at": "2026-11-25T20:52:53.898Z"
+      "at": "2026-11-26T18:18:50.968Z"
     },
     "zeus__zeus-v13.2.5-universal.apk": {
       "app": "zeus",
@@ -691,17 +691,17 @@
       "sha256": "bc134bb8de2f641d7c7d5ace5b9df5ac7e716a993973346699041b28932c67bd",
       "outcome": "scanned",
       "exitCode": 0,
-      "ms": 270,
+      "ms": 389,
       "summary": {
         "errors": 0,
         "warnings": 5,
         "info": 0
       },
-      "releaseLint": "0.3.5",
-      "commit": "4dc685a459ef046d064d055f33f180e087577be4",
+      "releaseLint": "0.3.9",
+      "commit": "e124c46a3d37be3f5f05ff0184f8fe0cc31f873e",
       "toolSourceModified": false,
       "node": "v26.13.1",
-      "at": "2026-11-25T20:52:45.759Z"
+      "at": "2026-11-26T18:18:40.384Z"
     },
     "zeus__zeus-v13.2.5.ipa": {
       "app": "zeus",
@@ -710,17 +710,17 @@
       "sha256": "c8b1787e8e52d6b32f32ca520b9b3215ddcc66653d0b4978fb53b01c8c1b0d67",
       "outcome": "scanned",
       "exitCode": 0,
-      "ms": 509,
+      "ms": 837,
       "summary": {
         "errors": 0,
         "warnings": 4,
         "info": 0
       },
-      "releaseLint": "0.3.5",
-      "commit": "4dc685a459ef046d064d055f33f180e087577be4",
+      "releaseLint": "0.3.9",
+      "commit": "e124c46a3d37be3f5f05ff0184f8fe0cc31f873e",
       "toolSourceModified": false,
       "node": "v26.13.1",
-      "at": "2026-11-25T20:52:46.311Z"
+      "at": "2026-11-26T18:18:41.259Z"
     },
     "zulip__app-release.aab": {
       "app": "zulip",
@@ -729,17 +729,17 @@
       "sha256": "a1dfa8ea35ba34ad2516b093f54f322d65dff889b9b825716414479a29e52139",
       "outcome": "scanned",
       "exitCode": 0,
-      "ms": 82,
+      "ms": 102,
       "summary": {
         "errors": 0,
         "warnings": 2,
         "info": 0
       },
-      "releaseLint": "0.3.5",
-      "commit": "4dc685a459ef046d064d055f33f180e087577be4",
+      "releaseLint": "0.3.9",
+      "commit": "e124c46a3d37be3f5f05ff0184f8fe0cc31f873e",
       "toolSourceModified": false,
       "node": "v26.13.1",
-      "at": "2026-11-25T20:52:53.221Z"
+      "at": "2026-11-26T18:18:50.031Z"
     }
   }
 }

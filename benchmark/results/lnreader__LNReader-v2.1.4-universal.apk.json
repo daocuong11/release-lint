@@ -1,6 +1,6 @@
 {
   "tool": "release-lint",
-  "version": "0.3.5",
+  "version": "0.3.9",
   "app": {
     "file": "lnreader__LNReader-v2.1.4-universal.apk",
     "platform": "android",

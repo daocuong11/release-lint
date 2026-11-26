@@ -41,6 +41,13 @@ Add `--only mattermost,bluewallet` to `download.mjs` or `run.mjs` to limit them 
 - `false-alarm`: the tool misread it, or it is not a real host (placeholder text, a library default).
 - `cant-tell`: it depends on something we cannot see.
 
+## Withheld findings
+
+A finding that looks like a live secret is reported privately to the app's maintainers first. Until they have fixed
+it, it is kept out of every public file (`results/`, `runs.json`, `findings.csv`, `RESULTS.md`); RESULTS.md only says
+how many are withheld. The scripts do this for apps listed in a local, gitignored disclosure file, and keep the full
+reports in the gitignored `cache/private/`. Anyone re-running the benchmark from scratch gets the full reports.
+
 ## Limits
 
 - This measures how often a finding is wrong, not how many real problems release-lint misses.

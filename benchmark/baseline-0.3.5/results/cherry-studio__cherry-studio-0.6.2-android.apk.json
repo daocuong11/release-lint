@@ -1,0 +1,80 @@
+{
+  "tool": "release-lint",
+  "version": "0.3.5",
+  "app": {
+    "file": "cherry-studio__cherry-studio-0.6.2-android.apk",
+    "platform": "android",
+    "appId": "com.cherryai.cherrystudio_app",
+    "version": "0.6.2",
+    "build": "275",
+    "bundle": {
+      "file": "assets/index.android.bundle",
+      "kind": "hermes",
+      "hermesVersion": 99,
+      "approximate": false
+    }
+  },
+  "findings": [
+    {
+      "ruleId": "host/local-only-domain",
+      "severity": "warning",
+      "message": "Points at a local-only domain (.local, .test, .internal, .lan)",
+      "evidence": "https://file-preview.local/",
+      "location": "assets/index.android.bundle",
+      "fix": "Make sure release builds use production URLs (check env-based config such as EXPO_PUBLIC_* or app.config.ts). If this host is intended, add it to allowHosts in release-lint.config.json."
+    },
+    {
+      "ruleId": "host/localhost",
+      "severity": "warning",
+      "message": "Points at localhost: it only works on the developer machine",
+      "evidence": "http://localhost:1234",
+      "location": "assets/index.android.bundle",
+      "fix": "Make sure release builds use production URLs (check env-based config such as EXPO_PUBLIC_* or app.config.ts). If this host is intended, add it to allowHosts in release-lint.config.json."
+    },
+    {
+      "ruleId": "host/localhost",
+      "severity": "warning",
+      "message": "Points at localhost: it only works on the developer machine",
+      "evidence": "http://127.0.0.1:11434/api",
+      "location": "assets/index.android.bundle",
+      "fix": "Make sure release builds use production URLs (check env-based config such as EXPO_PUBLIC_* or app.config.ts). If this host is intended, add it to allowHosts in release-lint.config.json."
+    },
+    {
+      "ruleId": "host/non-production",
+      "severity": "warning",
+      "message": "Points at what looks like a staging or development host",
+      "evidence": "https://open-dev.dingtalk.com/fe/old",
+      "location": "assets/index.android.bundle",
+      "fix": "Make sure release builds use production URLs (check env-based config such as EXPO_PUBLIC_* or app.config.ts). If this host is intended, add it to allowHosts in release-lint.config.json."
+    },
+    {
+      "ruleId": "host/local-only-domain",
+      "severity": "warning",
+      "message": "Points at a local-only domain (.local, .test, .internal, .lan)",
+      "evidence": "https://dev-mock.local/v1",
+      "location": "assets/index.android.bundle",
+      "fix": "Make sure release builds use production URLs (check env-based config such as EXPO_PUBLIC_* or app.config.ts). If this host is intended, add it to allowHosts in release-lint.config.json."
+    },
+    {
+      "ruleId": "host/non-production",
+      "severity": "warning",
+      "message": "Points at what looks like a staging or development host",
+      "evidence": "http://dev.w3.org/csswg/cssom/",
+      "location": "assets/index.android.bundle",
+      "fix": "Make sure release builds use production URLs (check env-based config such as EXPO_PUBLIC_* or app.config.ts). If this host is intended, add it to allowHosts in release-lint.config.json."
+    },
+    {
+      "ruleId": "debug/cleartext-traffic",
+      "severity": "warning",
+      "message": "Plain HTTP is allowed to every host",
+      "evidence": "android:usesCleartextTraffic=\"true\"",
+      "location": "AndroidManifest.xml",
+      "fix": "Remove usesCleartextTraffic, or allow HTTP only for specific hosts with a network security config."
+    }
+  ],
+  "summary": {
+    "errors": 0,
+    "warnings": 7,
+    "info": 0
+  }
+}

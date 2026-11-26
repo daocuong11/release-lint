@@ -24,7 +24,9 @@ New in the 0.3.4 run, now that bundles decode exactly:
 
 - Joplin ships five complete RSA private keys: the published test keys of
   `packages/lib/services/e2ee/ppk/ppkTestUtils.ts`. Not a live secret, but real key material that the old rule could
-  not tell apart from parser strings, and the new rule reports correctly.
+  not tell apart from parser strings, and the new rule reports correctly. Asked in laurent22/joplin#17199, the
+  maintainer replied that it is by design (the keys are tiny and the tests only run in dev), so the verdict is
+  `intended`.
 - Mattermost's iOS build (readable now) keeps React Native's template `localhost` exception in `Info.plist`.
 
 The sections below describe the problems as found in 0.3.3.

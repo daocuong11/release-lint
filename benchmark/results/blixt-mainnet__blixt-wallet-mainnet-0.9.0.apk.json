@@ -1,6 +1,6 @@
 {
   "tool": "release-lint",
-  "version": "0.3.5",
+  "version": "0.3.9",
   "app": {
     "file": "blixt-mainnet__blixt-wallet-mainnet-0.9.0.apk",
     "platform": "android",

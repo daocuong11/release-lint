@@ -15,6 +15,22 @@ export const PRIVATE = join(BENCH, 'PRIVATE-disclosures.md');
 /** correct: a real problem. intended: read correctly, but the app chose it. false-alarm: the tool misread it. */
 export const VERDICTS = ['correct', 'intended', 'false-alarm', 'cant-tell'];
 
+/** Inside the gitignored cache: full reports and verdicts for findings withheld from every public file. */
+export const PRIVATE_DIR = join(CACHE, 'private');
+export const WITHHELD_CSV = join(PRIVATE_DIR, 'findings-withheld.csv');
+
+/**
+ * Apps whose secret findings look like live secrets: listed as `exclude-secrets: <app-id>` in the gitignored
+ * PRIVATE-disclosures.md. Their secret findings are kept out of results/, runs.json, findings.csv and RESULTS.md
+ * until the maintainer has fixed them, so publishing the benchmark never discloses them early.
+ */
+export function withheldApps() {
+  if (!existsSync(PRIVATE)) return new Set();
+  return new Set([...readFileSync(PRIVATE, 'utf8').matchAll(/^\s*-?\s*exclude-secrets:\s*(\S+)/gm)].map((m) => m[1]));
+}
+
+export const isWithheld = (withheld, appId, ruleId) => withheld.has(appId) && ruleId.startsWith('secret/');
+
 export function loadApps() {
   return JSON.parse(readFileSync(join(BENCH, 'apps.json'), 'utf8')).apps;
 }

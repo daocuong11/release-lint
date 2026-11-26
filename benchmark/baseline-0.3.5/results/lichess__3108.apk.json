@@ -1,0 +1,18 @@
+{
+  "tool": "release-lint",
+  "version": "0.3.5",
+  "app": {
+    "file": "lichess__3108.apk",
+    "platform": "android",
+    "appId": "org.lichess.mobileV2",
+    "version": "0.31.8",
+    "build": "3108",
+    "bundle": null
+  },
+  "findings": [],
+  "summary": {
+    "errors": 0,
+    "warnings": 0,
+    "info": 0
+  }
+}

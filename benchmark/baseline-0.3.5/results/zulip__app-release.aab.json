@@ -1,0 +1,40 @@
+{
+  "tool": "release-lint",
+  "version": "0.3.5",
+  "app": {
+    "file": "zulip__app-release.aab",
+    "platform": "android",
+    "appId": "com.zulipmobile",
+    "version": "27.235",
+    "build": "235",
+    "bundle": {
+      "file": "base/assets/index.android.bundle",
+      "kind": "javascript",
+      "hermesVersion": null,
+      "approximate": false
+    }
+  },
+  "findings": [
+    {
+      "ruleId": "debug/user-ca-trusted",
+      "severity": "warning",
+      "message": "Trusts user-installed CA certificates: anyone who adds one to their phone can read the app's HTTPS traffic",
+      "evidence": "<base-config> trusts <certificates src=\"user\">",
+      "location": "base/res/xml/network_security_config.xml",
+      "fix": "Move <certificates src=\"user\"/> into <debug-overrides>, which only applies to debuggable builds."
+    },
+    {
+      "ruleId": "sourcemap/url",
+      "severity": "warning",
+      "message": "The bundle points to a source map",
+      "evidence": "sourceMappingURL=index.android.bundle.map",
+      "location": "base/assets/index.android.bundle",
+      "fix": "Build the release bundle without a sourceMappingURL comment."
+    }
+  ],
+  "summary": {
+    "errors": 0,
+    "warnings": 2,
+    "info": 0
+  }
+}

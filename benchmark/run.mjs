@@ -8,7 +8,21 @@ import { createHash } from 'node:crypto';
 import { execFileSync, spawnSync } from 'node:child_process';
 import { mkdirSync, readFileSync, rmSync, writeFileSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
-import { cacheName, CACHE, DOWNLOADS, RESULTS, ROOT, RUNS, readJson, selectApps } from './lib.mjs';
+import { cacheName, CACHE, DOWNLOADS, PRIVATE_DIR, RESULTS, ROOT, RUNS, isWithheld, readJson, selectApps, withheldApps } from './lib.mjs';
+
+/**
+ * The public copy of a report: findings withheld for private disclosure removed, and the summary recounted so the
+ * counts do not hint at them. The full report is kept in the gitignored PRIVATE_DIR.
+ */
+function publicReport(report, appId, withheld, key) {
+  const hidden = report.findings.filter((f) => isWithheld(withheld, appId, f.ruleId));
+  if (hidden.length === 0) return report;
+  mkdirSync(PRIVATE_DIR, { recursive: true });
+  writeFileSync(join(PRIVATE_DIR, `${key}.json`), `${JSON.stringify(report, null, 2)}\n`);
+  const findings = report.findings.filter((f) => !hidden.includes(f));
+  const count = (severity) => findings.filter((f) => f.severity === severity).length;
+  return { ...report, findings, summary: { errors: count('error'), warnings: count('warning'), info: count('info') } };
+}
 
 const TIMEOUT_MS = 10 * 60 * 1000;
 const BIN = join(ROOT, 'dist', 'bin.js');
@@ -46,6 +60,7 @@ function main() {
   const apps = selectApps(process.argv.slice(2));
   const tool = toolInfo();
   const downloads = readJson(DOWNLOADS, {});
+  const withheld = withheldApps();
   const runs = readJson(RUNS, { runs: {} });
   mkdirSync(RESULTS, { recursive: true });
   mkdirSync(EMPTY_CWD, { recursive: true });
@@ -71,7 +86,9 @@ function main() {
         cwd: EMPTY_CWD, encoding: 'utf8', timeout: TIMEOUT_MS, maxBuffer: 256 * 1024 * 1024, env: { ...process.env, GITHUB_ACTIONS: '' },
       });
       const ms = Math.round(performance.now() - started);
-      const { outcome, report, detail } = classify(result);
+      const classified = classify(result);
+      const { outcome, detail } = classified;
+      const report = classified.report && publicReport(classified.report, app.id, withheld, key);
 
       for (const ext of ['.json', '.stderr.txt']) rmSync(join(RESULTS, key + ext), { force: true });
       if (report) writeFileSync(join(RESULTS, `${key}.json`), `${JSON.stringify(report, null, 2)}\n`);

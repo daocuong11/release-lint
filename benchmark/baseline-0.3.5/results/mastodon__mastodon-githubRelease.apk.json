@@ -1,0 +1,27 @@
+{
+  "tool": "release-lint",
+  "version": "0.3.5",
+  "app": {
+    "file": "mastodon__mastodon-githubRelease.apk",
+    "platform": "android",
+    "appId": "org.joinmastodon.android",
+    "version": "2.13.7",
+    "build": "198",
+    "bundle": null
+  },
+  "findings": [
+    {
+      "ruleId": "debug/user-ca-trusted",
+      "severity": "warning",
+      "message": "Trusts user-installed CA certificates: anyone who adds one to their phone can read the app's HTTPS traffic",
+      "evidence": "<base-config> trusts <certificates src=\"user\">",
+      "location": "res/8G.xml",
+      "fix": "Move <certificates src=\"user\"/> into <debug-overrides>, which only applies to debuggable builds."
+    }
+  ],
+  "summary": {
+    "errors": 0,
+    "warnings": 1,
+    "info": 0
+  }
+}
