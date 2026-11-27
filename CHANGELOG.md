@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+- New rule `secret/discord-webhook`: Discord webhook URLs, which let anyone post to your channel. Thanks
+  [@tarekooooooo](https://github.com/tarekooooooo) (#44), closing good first issue #32.
+
 ## 0.3.9
 
 - New rule `secret/groq-api-key`: Groq API keys (`gsk_`). Thanks [@ChaseZhang-ai](https://github.com/ChaseZhang-ai)
