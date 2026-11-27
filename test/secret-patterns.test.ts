@@ -46,6 +46,7 @@ const CASES: Case[] = [
   { rule: 'secret/perplexity-api-key', finds: 'pplx' + '-' + 'a'.repeat(48), ignores: 'pplx' + '-' + 'a'.repeat(20) },
   { rule: 'secret/posthog-api-key', finds: 'ph' + 'x_' + 'a'.repeat(43), ignores: 'ph' + 'c_' + 'a'.repeat(43) },
   { rule: 'secret/discord-webhook', finds: 'https://discord.com/api/' + 'webhooks/' + '1'.repeat(18) + '/' + 'a'.repeat(68), ignores: 'https://discord.com/api/' + 'oauth2/authorize' },
+  { rule: 'secret/npm-token', finds: 'npm' + '_' + 'a'.repeat(36), ignores: 'npm' + '_' + 'a'.repeat(20) },
 ];
 
 const app = (strings: string[]): AppModel => ({
