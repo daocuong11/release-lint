@@ -116,6 +116,7 @@ export const SECRET_PATTERNS: readonly SecretPattern[] = [
   { id: 'secret/twilio-api-key', severity: 'error', pattern: /(?<![\w+/-])SK[0-9a-fA-F]{32}(?![\w+/=-])/g, message: 'Twilio API key', fix: `Twilio API keys let anyone send SMS on your bill: ${MOVE_TO_SERVER}` },
   { id: 'secret/replicate-api-token', severity: 'error', pattern: /(?<![\w-])r8_[0-9A-Za-z_-]{37}(?![\w-])/g, message: 'Replicate API token', fix: `Replicate tokens let anyone run models on your account: ${MOVE_TO_SERVER}` },
   { id: 'secret/resend-api-key', severity: 'error', pattern: /(?<![\w-])re_[1-9A-HJ-NP-Za-km-z]{8}_[1-9A-HJ-NP-Za-km-z]{24}(?![\w-])/g, message: 'Resend API key', fix: `A Resend key lets anyone send email from your domain: ${MOVE_TO_SERVER}` },
+  { id: 'secret/brevo-api-key', severity: 'error', pattern: /(?<![\w-])xkeysib-[a-f0-9]{64}-[A-Za-z0-9]{16}(?![\w-])/g, message: 'Brevo API key', fix: `A Brevo key lets anyone send from your account and read your contacts: ${MOVE_TO_SERVER}` },
   // ↑ Add new patterns here, above this line.
 ];
 // Public by design, never reported: Stripe publishable keys (pk_), Supabase anon keys, Supabase publishable keys (sb_publishable_),
