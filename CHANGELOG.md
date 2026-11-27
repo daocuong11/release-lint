@@ -4,6 +4,8 @@
 
 - New rule `secret/discord-webhook`: Discord webhook URLs, which let anyone post to your channel. Thanks
   [@tarekooooooo](https://github.com/tarekooooooo) (#44), closing good first issue #32.
+- New rule `secret/npm-token`: npm access tokens (`npm_`), which let anyone publish packages as you. Thanks
+  [@daocuong11](https://github.com/daocuong11) (#45), closing good first issue #35.
 
 ## 0.3.9
 
