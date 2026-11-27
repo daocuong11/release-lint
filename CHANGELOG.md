@@ -6,6 +6,8 @@
   [@tarekooooooo](https://github.com/tarekooooooo) (#44), closing good first issue #32.
 - New rule `secret/npm-token`: npm access tokens (`npm_`), which let anyone publish packages as you. Thanks
   [@daocuong11](https://github.com/daocuong11) (#45), closing good first issue #35.
+- New rule `secret/notion-token`: Notion integration tokens (`ntn_`), which can read and edit the pages shared with
+  them. Thanks [@daocuong11](https://github.com/daocuong11) (#46), closing good first issue #37.
 
 ## 0.3.9
 
