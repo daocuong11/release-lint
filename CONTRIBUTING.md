@@ -6,6 +6,9 @@ Thanks for helping. The most useful contributions are:
   finding (secrets are already masked), never the app file.
 - **New rules.** A key format or a release mistake it should catch. Small rule additions are good first pull requests.
 
+To take a [`good first issue`](https://github.com/harpreetkbadhan/release-lint/labels/good%20first%20issue), comment on it.
+Please work on one or two at a time, so new contributors can find one too.
+
 ## Development
 
 ```sh
